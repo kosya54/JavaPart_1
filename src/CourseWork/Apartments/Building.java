@@ -17,19 +17,18 @@ public final class Building {
     protected int[] findApartment() {
         int apartmentNumber = 1;
 
-        for (int i = 0, floorNumber = 1; i < this.totalFloors; i++, floorNumber++) {
+        for (int i = 0, floorNumber = 1; i < this.totalFloors; i++, floorNumber++)
             for (int j = 0, porchNumber = 1; j < this.totalPorches; j++, porchNumber++) {
                 for (int f = 0; f < Building.APARTMENTS_PER_PORCH; f++, apartmentNumber++) {
                     this.apartments[i][j][f] = apartmentNumber;
 
                     if (apartmentNumber == this.requiredApartment) {
                         //Return floor number -> porch number -> apartment number -> apartment position ->
-                        return new int[] {floorNumber, porchNumber, apartmentNumber, f};
+                        return new int[]{floorNumber, porchNumber, apartmentNumber, f};
                     }
                 }
             }
-        }
-        return new int[] {};
+        return new int[]{};
     }
 
     protected String getApartmentPosition(int apartmentPosition) {

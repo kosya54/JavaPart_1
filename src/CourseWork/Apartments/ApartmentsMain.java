@@ -21,7 +21,7 @@ public class ApartmentsMain {
         int[] apartment = building.findApartment();
 
         if (apartment.length == 0) {
-            System.out.printf("Квартиры с номером %d нет.", requiredApartment);
+            System.out.printf("Квартиры с номером %d в здании нет.", requiredApartment);
         } else {
             System.out.printf("Квартира %d находится в %d подъезде %d этажа%n", apartment[2], apartment[1], apartment[0]);
             System.out.printf("Квартира на лестничной площадке %s%n", building.getApartmentPosition(apartment[3]));
