@@ -8,6 +8,7 @@ public class Hello {
 
         System.out.println("Введите ваше имя: ");
         String name = scanner.nextLine();
+
         System.out.printf("Привет, %s!%n", name);
     }
 }
