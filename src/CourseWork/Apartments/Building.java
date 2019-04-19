@@ -1,4 +1,4 @@
-package CourseWork;
+package CourseWork.Apartments;
 
 public final class Building {
     private static final int APARTMENTS_PER_PORCH = 4;

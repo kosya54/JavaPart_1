@@ -1,4 +1,4 @@
-package CourseWork;
+package CourseWork.Apartments;
 
 import java.util.Scanner;
 import java.util.Locale;
