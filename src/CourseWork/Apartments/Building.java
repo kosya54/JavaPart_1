@@ -14,7 +14,7 @@ public final class Building {
         this.apartments = new int[this.totalFloors][this.totalPorches][Building.APARTMENTS_PER_PORCH];
     }
 
-    public int[] findApartment() {
+    protected int[] findApartment() {
         int apartmentNumber = 1;
 
         for (int i = 0, floorNumber = 1; i < this.totalFloors; i++, floorNumber++) {
@@ -32,7 +32,7 @@ public final class Building {
         return new int[] {};
     }
 
-    public String getApartmentPosition(int apartmentPosition) {
+    protected String getApartmentPosition(int apartmentPosition) {
         switch (apartmentPosition) {
             case 0:
                 return "ближняя слева";
