@@ -1,37 +1,50 @@
 package CourseWork.Apartments;
 
-public final class Building {
+final class Building {
     private static final int APARTMENTS_PER_PORCH = 4;
     private int totalFloors;
     private int totalPorches;
     private int requiredApartment;
-    private int[][][] apartments;
+    private int totalApartments;
 
-    public Building(int totalFloors, int totalPorches, int requiredApartment) {
+    Building(int totalFloors, int totalPorches, int requiredApartment) {
         this.totalFloors = totalFloors;
         this.totalPorches = totalPorches;
         this.requiredApartment = requiredApartment;
-        this.apartments = new int[this.totalFloors][this.totalPorches][Building.APARTMENTS_PER_PORCH];
+        this.totalApartments = this.totalFloors * (this.totalPorches * Building.APARTMENTS_PER_PORCH);
     }
 
-    protected int[] findApartment() {
-        int apartmentNumber = 1;
+    void showApartment() {
+        if (this.requiredApartment > this.totalApartments) {
+            System.out.printf("Квартиры с номером %d в здании с нет.", this.requiredApartment);
+        } else {
+            int[] apartment = this.findApartment();
 
-        for (int i = 0, floorNumber = 1; i < this.totalFloors; i++, floorNumber++)
+            System.out.printf("Квартира %d находится в %d подъезде %d этажа%n", apartment[2], apartment[1], apartment[0]);
+            System.out.printf("Квартира на лестничной площадке %s%n", this.getApartmentPosition(apartment[3]));
+        }
+    }
+
+    private int[] findApartment() {
+        int apartmentNumber = 1;
+        int[][][] apartments = new int[this.totalFloors][this.totalPorches][Building.APARTMENTS_PER_PORCH];
+
+        for (int i = 0, floorNumber = 1; i < this.totalFloors; i++, floorNumber++) {
             for (int j = 0, porchNumber = 1; j < this.totalPorches; j++, porchNumber++) {
-                for (int f = 0; f < Building.APARTMENTS_PER_PORCH; f++, apartmentNumber++) {
-                    this.apartments[i][j][f] = apartmentNumber;
+                for (int apartmentPosition = 0; apartmentPosition < Building.APARTMENTS_PER_PORCH; apartmentPosition++, apartmentNumber++) {
+                    apartments[i][j][apartmentPosition] = apartmentNumber;
 
                     if (apartmentNumber == this.requiredApartment) {
-                        //Return floor number -> porch number -> apartment number -> apartment position ->
-                        return new int[]{floorNumber, porchNumber, apartmentNumber, f};
+                        //Return floor number -> porch number -> apartment number -> apartment position
+                        return new int[]{floorNumber, porchNumber, apartmentNumber, apartmentPosition};
                     }
                 }
             }
+        }
         return new int[]{};
     }
 
-    protected String getApartmentPosition(int apartmentPosition) {
+    private String getApartmentPosition(int apartmentPosition) {
         switch (apartmentPosition) {
             case 0:
                 return "ближняя слева";

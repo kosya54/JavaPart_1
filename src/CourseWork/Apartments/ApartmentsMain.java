@@ -1,7 +1,7 @@
 package CourseWork.Apartments;
 
-import java.util.Scanner;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class ApartmentsMain {
     public static void main(String[] args) {
@@ -18,13 +18,6 @@ public class ApartmentsMain {
         int requiredApartment = scanner.nextInt();
 
         Building building = new Building(totalFloors, totalPorches, requiredApartment);
-        int[] apartment = building.findApartment();
-
-        if (apartment.length == 0) {
-            System.out.printf("Квартиры с номером %d в здании нет.", requiredApartment);
-        } else {
-            System.out.printf("Квартира %d находится в %d подъезде %d этажа%n", apartment[2], apartment[1], apartment[0]);
-            System.out.printf("Квартира на лестничной площадке %s%n", building.getApartmentPosition(apartment[3]));
-        }
+        building.showApartment();
     }
 }
