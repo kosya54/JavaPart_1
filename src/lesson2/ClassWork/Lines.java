@@ -5,10 +5,10 @@ public class Lines {
         System.out.println("Вариант №1:");
         printLinesVersion1();
 
-        System.out.println("Вариант №2:");
+        System.out.printf("%nВариант №2:%n");
         printLinesVersion2();
 
-        System.out.println("Печать даты и пути:");
+        System.out.printf("%nПечать даты и пути:%n");
         printDateAndPathToString();
 
         System.out.println("Печать результат:");

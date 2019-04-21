@@ -7,7 +7,7 @@ public class Area {
 
     private static void printAreaCircle() {
         int radius = 50;
-        System.out.println("Вычисляет площадь  круга по формуле S = PI*R^2");
-        System.out.println("Площадь круга = " + (Math.PI * Math.pow(radius, 2)) + " при радиусе равном: " + radius);
+        System.out.printf("Вычисляет площадь  круга по формуле S = PI*R^2%n");
+        System.out.printf("Площадь круга = %.3f при радиусе равном: %d%n", (Math.PI * Math.pow(radius, 2)), radius);
     }
 }
