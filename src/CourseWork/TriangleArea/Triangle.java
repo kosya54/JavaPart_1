@@ -1,13 +1,11 @@
 package CourseWork.TriangleArea;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Triangle {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.US);
 
         String axis;
         double[][] coordinates = new double[3][2];

@@ -13,17 +13,21 @@ public class Apartments {
         int totalPorches = scanner.nextInt();
 
         System.out.printf("Укажите номер искомой квартиры:%n");
-        int requiredApartment = scanner.nextInt();
+        double requiredApartment = scanner.nextDouble();
 
         int totalApartments = totalFloors * (totalPorches * 4);
 
         if (requiredApartment > totalApartments) {
-            System.out.printf("Квартиры с номером %d в здании нет.", requiredApartment);
+            System.out.printf("Квартиры с номером %f в здании нет.", requiredApartment);
         } else {
-            int apartmentsOnFloor = totalPorches * 4;
-            double porch = apartmentsOnFloor % requiredApartment;
+            //вычисляем подъезд
+            double porch = requiredApartment / (totalFloors * 4);
+            System.out.println("Подъезд: " + Math.ceil(porch));
 
-            System.out.printf("Подъезд: %f%n", porch);
+            int integerPart = (int)porch;
+            double floor = (porch - integerPart) * totalFloors;
+            System.out.println("Этаж: " + floor);
+            System.out.println("Этаж: " + Math.ceil(floor));
         }
     }
 
