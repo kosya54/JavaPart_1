@@ -4,18 +4,13 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
-final class Triangle {
-    private double[][] coordinates;
-    private Scanner scanner;
+public class Triangle {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
 
-    Triangle() {
-        this.coordinates = new double[3][2];
-        this.scanner = new Scanner(System.in);
-        this.scanner.useLocale(Locale.US);
-    }
-
-    double[][] readCoordinates() {
         String axis;
+        double[][] coordinates = new double[3][2];
 
         System.out.printf("Введите координаты вершин треугольника:%n");
 
@@ -32,35 +27,38 @@ final class Triangle {
                 coordinates[i][j] = scanner.nextInt();
             }
         }
-        return coordinates;
+
+        if (isTriangle(coordinates)) {
+            double sideA = calculateSideLength(coordinates[0][0], coordinates[1][0], coordinates[0][1], coordinates[1][1]);
+            double sideB = calculateSideLength(coordinates[2][0], coordinates[1][0], coordinates[2][1], coordinates[1][1]);
+            double sideC = calculateSideLength(coordinates[2][0], coordinates[0][0], coordinates[2][1], coordinates[0][1]);
+
+            System.out.printf("%nПлощадь треугольника равна: %.5f%n", calculateTriangleArea(sideA, sideB, sideC));
+        } else {
+            System.out.println("Фигура не является треугольником. Координаты лежат на одной прямой.");
+        }
     }
 
-    boolean isTriangle(double[][] coordinates) {
+    private static boolean isTriangle(double[][] coordinates) {
         double[] coordinatesX = new double[coordinates.length];
         double[] coordinatesY = new double[coordinates.length];
 
-        for (double[] coordinate : coordinates) {
-            for (int j = 0; j < coordinate.length; j++) {
-                coordinatesX[j] = coordinates[j][0];
-                coordinatesY[j] = coordinates[j][1];
-            }
-        }
-
-        for (int i = 0; i < coordinatesX.length; i++) {
-            System.out.println(coordinatesX[i]);
+        for (int i = 0; i < coordinates.length; i++) {
+            coordinatesX[i] = coordinates[i][0];
+            coordinatesY[i] = coordinates[i][1];
         }
 
         boolean triangle = true;
 
         if (Arrays.equals(coordinatesX, coordinatesY)) {
             triangle = false;
-        } else if (this.isCoordinatesEquals(coordinatesX)) {
+        } else if (isCoordinatesEquals(coordinatesX) || isCoordinatesEquals(coordinatesY)) {
             triangle = false;
         }
         return triangle;
     }
 
-    private boolean isCoordinatesEquals(double[] coordinates) {
+    private static boolean isCoordinatesEquals(double[] coordinates) {
         for (double coordinate : coordinates) {
             if (coordinate != coordinates[0]) {
                 return false;
@@ -69,7 +67,17 @@ final class Triangle {
         return true;
     }
 
-    double calculateSideLength(double xn, double xm, double yn, double ym) {
+    private static double calculateSideLength(double xn, double xm, double yn, double ym) {
         return Math.sqrt(Math.pow((xm - xn), 2) + Math.pow((ym - yn), 2));
+    }
+
+    private static double calculateTriangleArea(double sideA, double sideB, double sideC) {
+        double semiPerimeter = calculateSemiPerimeter(sideA, sideB, sideC);
+
+        return Math.sqrt(semiPerimeter * ((semiPerimeter - sideA) * (semiPerimeter - sideB) * (semiPerimeter - sideC)));
+    }
+
+    private static double calculateSemiPerimeter(double sideA, double sideB, double sideC) {
+        return (sideA + sideB + sideC)/2;
     }
 }
