@@ -13,33 +13,30 @@ public class Apartments {
         int totalPorches = scanner.nextInt();
 
         System.out.printf("Укажите номер искомой квартиры:%n");
-        double requiredApartment = scanner.nextDouble();
+        int requiredApartment = scanner.nextInt();
 
         int totalApartments = totalFloors * (totalPorches * 4);
 
         if (requiredApartment > totalApartments) {
-            System.out.printf("Квартиры с номером %f в здании нет.", requiredApartment);
+            System.out.printf("Квартиры с номером %d в здании нет.", requiredApartment);
         } else {
-            //вычисляем подъезд
-            double porch = requiredApartment / (totalFloors * 4);
-            System.out.println("Подъезд: " + Math.ceil(porch));
+            int porch = ((requiredApartment - 1) / (totalFloors * 4)) + 1;
+            int floor = (((requiredApartment - 1) % (totalFloors * 4)) / 4) + 1;
+            int apartmentPosition = (requiredApartment - 1) % 4;
 
-            int integerPart = (int)porch;
-            double floor = (porch - integerPart) * totalFloors;
-            System.out.println("Этаж: " + floor);
-            System.out.println("Этаж: " + Math.ceil(floor));
+            System.out.printf("Квартира %d находится на %d этаже в %d подъезде %s", requiredApartment, floor, porch, getApartmentPosition(apartmentPosition));
         }
     }
 
     private static String getApartmentPosition(int apartmentPosition) {
         switch (apartmentPosition) {
-            case 1:
+            case 0:
                 return "ближняя слева";
-            case 2:
+            case 1:
                 return "дальняя слева";
-            case 3:
+            case 2:
                 return "дальняя справа";
-            case 4:
+            case 3:
                 return "ближняя справа";
         }
         return "";
