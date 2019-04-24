@@ -23,9 +23,6 @@ public class QuadraticEquation {
         System.out.println(discriminant);
 
         if (discriminant > 0) {
-//            double equationRoot1 =  (-b + Math.sqrt(discriminant)) / 2 * a;
-//            double equationRoot2 =  (-b - Math.sqrt(discriminant)) / 2 * a;
-
             double equationRoot1 = calculateEquationRoot1(a, b, discriminant);
             double equationRoot2 = calculateEquationRoot2(a, b, discriminant);
 
@@ -33,7 +30,7 @@ public class QuadraticEquation {
         } else if (discriminant == 0) {
             double equationRoot = -b / (2 * a);
 
-            System.out.printf("Дискриминант равен 0, уравнение имеет 1 корень.%nКорень = %f%.", equationRoot);
+            System.out.printf("Дискриминант равен 0, уравнение имеет 1 корень.%nКорень = %f.", equationRoot);
         } else {
             System.out.println("Дискриминант меньше 0. Уравнение не имеет решений.");
         }

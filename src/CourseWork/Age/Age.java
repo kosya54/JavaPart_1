@@ -1,6 +1,5 @@
 package CourseWork.Age;
 
-
 import java.util.Scanner;
 
 class Age {
