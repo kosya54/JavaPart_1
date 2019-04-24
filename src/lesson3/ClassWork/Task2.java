@@ -1,12 +1,10 @@
 package lesson3.ClassWork;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Task2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.US);
 
         System.out.printf("Введите целое число: %n");
         int number = scanner.nextInt();

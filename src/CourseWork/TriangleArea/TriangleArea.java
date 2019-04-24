@@ -39,9 +39,9 @@ public class TriangleArea {
     }
 
     private static boolean isLine(double x1, double y1, double x2, double y2, double x3, double y3) {
-        return (isCoordinatesEqual(x1, x2, x3)
+        return isCoordinatesEqual(x1, x2, x3)
                 || isCoordinatesEqual(y1, y2, y3)
-                || (isXEqualY(x1, y1) && isXEqualY(x2, y2) && isXEqualY(x3, y3)));
+                || (isXEqualY(x1, y1) && isXEqualY(x2, y2) && isXEqualY(x3, y3));
     }
 
     private static boolean isSidesEqual(double sideALength, double sideBLength, double sideCLength) {

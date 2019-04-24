@@ -28,9 +28,9 @@ class Age {
 
         if (age >= 11 && age <= 14) {
             ending = "лет";
-        } else if ((age % 10) == 1) {
+        } else if (age % 10 == 1) {
             ending = "год";
-        } else if ((age % 10) >= 2 && (age % 10) <= 4) {
+        } else if ((age % 10 >= 2) && (age % 10 <= 4)) {
             ending = "года";
         } else {
             ending = "лет";
