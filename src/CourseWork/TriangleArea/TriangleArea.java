@@ -1,35 +1,35 @@
 package CourseWork.TriangleArea;
 
-import java.util.Locale;
+//import java.util.Locale;
 import java.util.Scanner;
 
 public class TriangleArea {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.US);
+//        scanner.useLocale(Locale.US);
 
-        System.out.printf("Введите координаты вершин треугольника.%n");
-        System.out.printf("Введите X1:%n");
+        System.out.println("Введите координаты вершин треугольника.");
+        System.out.println("Введите X1:");
         double x1 = scanner.nextDouble();
 
-        System.out.printf("Введите Y1:%n");
+        System.out.println("Введите Y1:");
         double y1 = scanner.nextDouble();
 
-        System.out.printf("Введите X2:%n");
+        System.out.println("Введите X2:");
         double x2 = scanner.nextDouble();
 
-        System.out.printf("Введите Y2:%n");
+        System.out.println("Введите Y2:");
         double y2 = scanner.nextDouble();
 
-        System.out.printf("Введите X3:%n");
+        System.out.println("Введите X3:");
         double x3 = scanner.nextDouble();
 
-        System.out.printf("Введите Y3:%n");
+        System.out.println("Введите Y3:");
         double y3 = scanner.nextDouble();
 
-        double sideALength = calculateSideLength(x1, x2, y1, y2);
-        double sideBLength = calculateSideLength(x2, x3, y2, y3);
-        double sideCLength = calculateSideLength(x3, x1, y3, y1);
+        double sideALength = calculateSideLength(x1, y1, x2, y2);
+        double sideBLength = calculateSideLength(x2, y2, x3, y3);
+        double sideCLength = calculateSideLength(x3, y1, x1, y1);
 
         if (isLine(x1, y1, x2, y2, x3, y3) || isSidesEqual(sideALength, sideBLength, sideCLength)) {
             System.out.println("Фигура не является треугольником. Координаты лежат на одной прямой.");
@@ -59,9 +59,9 @@ public class TriangleArea {
     private static boolean isXEqualY(double coordinate1, double coordinate2) {
         return (Math.abs(coordinate1 - coordinate2) < 0.00001);
     }
-
-    private static double calculateSideLength(double xn, double xm, double yn, double ym) {
-        return Math.sqrt(Math.pow((xm - xn), 2) + Math.pow((ym - yn), 2));
+//TODO: Поправить формулу
+    private static double calculateSideLength(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow((y1 - x1), 2) + Math.pow((y2 - y1), 2));
     }
 
     private static double calculateTriangleArea(double sideA, double sideB, double sideC) {

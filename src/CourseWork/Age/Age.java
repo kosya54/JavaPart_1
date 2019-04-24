@@ -1,5 +1,6 @@
 package CourseWork.Age;
 
+
 import java.util.Scanner;
 
 class Age {
@@ -22,7 +23,7 @@ class Age {
         if (age > 100) {
             age %= 100;
         }
-        
+
         String ending;
 
         if (age >= 11 && age <= 14) {
