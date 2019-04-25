@@ -29,27 +29,18 @@ public class TriangleArea {
         double sideBLength = calculateSideLength(x2, y2, x3, y3);
         double sideCLength = calculateSideLength(x3, y3, x1, y1);
 
-        if (isLine(x1, y1, x2, y2, x3, y3) || isSidesEqual(sideALength, sideBLength, sideCLength)) {
+        if (isLine(x1, y1, x2, y2, x3, y3, sideALength, sideBLength, sideCLength)) {
             System.out.println("Фигура не является треугольником. Координаты лежат на одной прямой.");
         } else {
             System.out.printf("Площадь треугольника = %.3f", calculateTriangleArea(sideALength, sideBLength, sideCLength));
         }
     }
 
-    private static boolean isLine(double x1, double y1, double x2, double y2, double x3, double y3) {
-        return isCoordinatesEqual(x1, x2, x3)
-                || isCoordinatesEqual(y1, y2, y3)
+    private static boolean isLine(double x1, double y1, double x2, double y2, double x3, double y3, double sideALength, double sideBLength, double sideCLength) {
+        return (isDoubleNumbersEqual(x1, x2) && isDoubleNumbersEqual(x1, x3))
+                || (isDoubleNumbersEqual(y1, y2) && isDoubleNumbersEqual(y1, y3))
+                || isDoubleNumbersEqual((sideALength + sideBLength), sideCLength)
                 || (isDoubleNumbersEqual(x1, y1) && isDoubleNumbersEqual(x2, y2) && isDoubleNumbersEqual(x3, y3));
-    }
-
-    private static boolean isSidesEqual(double sideALength, double sideBLength, double sideCLength) {
-        return isDoubleNumbersEqual((sideALength + sideBLength), sideCLength);
-    }
-
-    private static boolean isCoordinatesEqual(double coordinate1, double coordinate2, double coordinate3) {
-        return isDoubleNumbersEqual(coordinate1, coordinate2)
-                && isDoubleNumbersEqual(coordinate1, coordinate3)
-                && isDoubleNumbersEqual(coordinate2, coordinate3);
     }
 
     private static boolean isDoubleNumbersEqual(double number1, double number2) {

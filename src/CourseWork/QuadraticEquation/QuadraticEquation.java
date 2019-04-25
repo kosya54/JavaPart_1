@@ -1,12 +1,10 @@
 package CourseWork.QuadraticEquation;
 
 import java.util.Scanner;
-import java.util.Locale;
 
 public class QuadraticEquation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.US);
 
         System.out.println("Решение квадратного уравнения вида ax^2 + bx + c = 0.");
 
@@ -19,32 +17,37 @@ public class QuadraticEquation {
         System.out.println("Введите коэффициент c:");
         double c = scanner.nextDouble();
 
-        double discriminant = calculateDiscriminant(a, b, c);
-        System.out.println(discriminant);
+        if (a == 0) {
+            System.out.println("Вы ввели a = 0, в этом случае уравнение становится линейным, что не попадает под условия задачи.");
+        } else if (b == 0 && c != 0) {
+            System.out.println("Вы ввели b = 0, уравнение принимает вид неполного квадратного уравнения ax^2 + c = 0.");
 
-        if (discriminant > 0) {
-            double equationRoot1 = calculateEquationRoot1(a, b, discriminant);
-            double equationRoot2 = calculateEquationRoot2(a, b, discriminant);
-
-            System.out.printf("Дискриминант равен: %.2f и больше 0, уравнение имеет 2 корня.%nКорень №1 = %.2f.%nКорень №2 = %.2f.", discriminant, equationRoot1, equationRoot2);
-        } else if (discriminant == 0) {
-            double equationRoot = -b / (2 * a);
-
-            System.out.printf("Дискриминант равен 0, уравнение имеет 1 корень.%nКорень = %f.", equationRoot);
+            if (-c / a >= 0) {
+                System.out.println("Уравнение имеет два корня.");
+                System.out.printf("Корень №1 = %.2f%n", Math.sqrt(-c / a));
+                System.out.printf("Корень №2 = %.2f", -(Math.sqrt(-c / a)));
+            } else {
+                System.out.println("Корней нет.");
+            }
+        } else if (c == 0 && b != 0) {
+            System.out.println("Вы ввели c = 0, уравнение принимает вид неполного квадратного уравнения ax^2 + bx = 0.");
+            System.out.println("Уравнение имеет два корня.");
+            System.out.println("Корень №1 = 0");
+            System.out.printf("Корень №2 = %.2f", (-b / a));
+        } else if (b == 0 && c == 0) {
+            System.out.println("Вы ввели b = 0 и c = 0, в данном случае уравнение имеет единственный корень.");
+            System.out.println("Корень = 0");
         } else {
-            System.out.println("Дискриминант меньше 0. Уравнение не имеет решений.");
+            double discriminant = Math.pow(b, 2) - 4 * a * c;
+
+            if (discriminant > 0) {
+                System.out.printf("Дискриминант равен: %.2f и больше 0, уравнение имеет 2 корня.%n", discriminant);
+                System.out.printf("Корень №1 = %.2f.%nКорень №2 = %.2f.", (-b + Math.sqrt(discriminant)) / 2 * a, (-b - Math.sqrt(discriminant)) / 2 * a);
+            } else if (discriminant == 0) {
+                System.out.printf("Дискриминант равен 0, уравнение имеет 1 корень.%nКорень = %.2f.", -b / (2 * a));
+            } else {
+                System.out.println("Дискриминант меньше 0. Уравнение не имеет решений.");
+            }
         }
-    }
-
-    private static double calculateDiscriminant(double a, double b, double c) {
-        return Math.pow(b, 2) - 4 * a * c;
-    }
-
-    private static double calculateEquationRoot1(double a, double b, double discriminant) {
-        return (-b + Math.sqrt(discriminant)) / 2 * a;
-    }
-
-    private static double calculateEquationRoot2(double a, double b, double discriminant) {
-        return (-b - Math.sqrt(discriminant)) / 2 * a;
     }
 }

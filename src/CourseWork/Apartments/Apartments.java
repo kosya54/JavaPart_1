@@ -6,25 +6,26 @@ public class Apartments {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.printf("Укажите количество этажей:%n");
-        int totalFloors = scanner.nextInt();
+        System.out.println("Укажите количество этажей:");
+        int numberOfFloors = scanner.nextInt();
 
-        System.out.printf("Укажите количество подъездов:%n");
-        int totalPorches = scanner.nextInt();
+        System.out.println("Укажите количество подъездов:");
+        int numberOfPorches = scanner.nextInt();
 
-        System.out.printf("Укажите номер искомой квартиры:%n");
-        int requiredApartment = scanner.nextInt();
+        System.out.println("Укажите номер искомой квартиры:");
+        int apartmentNumber = scanner.nextInt();
 
-        int totalApartments = totalFloors * (totalPorches * 4);
+        int apartmentsPerPorch = 4;
+        int numberOfApartments = numberOfFloors * (numberOfPorches * apartmentsPerPorch);
 
-        if (requiredApartment > totalApartments) {
-            System.out.printf("Квартиры с номером %d в здании нет.", requiredApartment);
+        if (apartmentNumber > numberOfApartments) {
+            System.out.printf("Квартиры с номером %d в здании нет.", apartmentNumber);
         } else {
-            int porch = ((requiredApartment - 1) / (totalFloors * 4)) + 1;
-            int floor = (((requiredApartment - 1) % (totalFloors * 4)) / 4) + 1;
-            int apartmentPosition = (requiredApartment - 1) % 4;
+            int porch = ((apartmentNumber - 1) / (numberOfFloors * apartmentsPerPorch)) + 1;
+            int floor = (((apartmentNumber - 1) % (numberOfFloors * apartmentsPerPorch)) / apartmentsPerPorch) + 1;
+            int apartmentPosition = (apartmentNumber - 1) % apartmentsPerPorch;
 
-            System.out.printf("Квартира %d находится на %d этаже в %d подъезде %s", requiredApartment, floor, porch, getApartmentPosition(apartmentPosition));
+            System.out.printf("Квартира %d находится на %d этаже в %d подъезде %s", apartmentNumber, floor, porch, getApartmentPosition(apartmentPosition));
         }
     }
 

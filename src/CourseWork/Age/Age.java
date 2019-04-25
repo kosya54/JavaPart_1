@@ -6,7 +6,7 @@ class Age {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.printf("Введите Ваш возраст от 1 до 112:%n");
+        System.out.println("Введите Ваш возраст от 1 до 112:");
         int age = scanner.nextInt();
 
         if (age < 1) {
@@ -19,17 +19,13 @@ class Age {
     }
 
     private static String setAgeEnding(int age) {
-        if (age > 100) {
-            age %= 100;
-        }
-
         String ending;
 
-        if (age >= 11 && age <= 14) {
+        if ((age >= 11 && age <= 14) || (age % 100 >= 11 && age % 100 <= 14)) {
             ending = "лет";
         } else if (age % 10 == 1) {
             ending = "год";
-        } else if ((age % 10 >= 2) && (age % 10 <= 4)) {
+        } else if (age % 10 >= 2 && age % 10 <= 4) {
             ending = "года";
         } else {
             ending = "лет";
