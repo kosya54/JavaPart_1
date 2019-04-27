@@ -14,14 +14,14 @@ class Age {
         } else if (age > 112) {
             System.out.println("Вы слишком стары.");
         } else {
-            System.out.printf("Вам %d %s", age, setAgeEnding(age));
+            System.out.printf("Вам %d %s", age, getAgeEnding(age));
         }
     }
 
-    private static String setAgeEnding(int age) {
+    private static String getAgeEnding(int age) {
         String ending;
 
-        if ((age >= 11 && age <= 14) || (age % 100 >= 11 && age % 100 <= 14)) {
+        if (age % 100 >= 11 && age % 100 <= 14) {
             ending = "лет";
         } else if (age % 10 == 1) {
             ending = "год";

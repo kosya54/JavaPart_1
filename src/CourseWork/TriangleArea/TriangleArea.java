@@ -29,22 +29,15 @@ public class TriangleArea {
         double sideBLength = calculateSideLength(x2, y2, x3, y3);
         double sideCLength = calculateSideLength(x3, y3, x1, y1);
 
-        if (isLine(x1, y1, x2, y2, x3, y3, sideALength, sideBLength, sideCLength)) {
-            System.out.println("Фигура не является треугольником. Координаты лежат на одной прямой.");
-        } else {
+        double epsilon = 1.0e-10;
+
+        if (((sideALength + sideBLength) - sideCLength > epsilon)
+                && ((sideALength + sideCLength) - sideBLength > epsilon)
+                && ((sideBLength + sideCLength) - sideALength > epsilon)) {
             System.out.printf("Площадь треугольника = %.3f", calculateTriangleArea(sideALength, sideBLength, sideCLength));
+        } else {
+            System.out.println("Фигура не является треугольником. Координаты лежат на одной прямой.");
         }
-    }
-
-    private static boolean isLine(double x1, double y1, double x2, double y2, double x3, double y3, double sideALength, double sideBLength, double sideCLength) {
-        return (isDoubleNumbersEqual(x1, x2) && isDoubleNumbersEqual(x1, x3))
-                || (isDoubleNumbersEqual(y1, y2) && isDoubleNumbersEqual(y1, y3))
-                || isDoubleNumbersEqual((sideALength + sideBLength), sideCLength)
-                || (isDoubleNumbersEqual(x1, y1) && isDoubleNumbersEqual(x2, y2) && isDoubleNumbersEqual(x3, y3));
-    }
-
-    private static boolean isDoubleNumbersEqual(double number1, double number2) {
-        return (Math.abs(number1 - number2) < 0.00001);
     }
 
     private static double calculateSideLength(double x1, double y1, double x2, double y2) {
