@@ -17,24 +17,30 @@ public class QuadraticEquation {
         System.out.println("Введите коэффициент c:");
         double c = scanner.nextDouble();
 
-        if (a == 0) {
+        double epsilon = 1.0e-10;
+
+        if (Math.abs(a) <= epsilon) {
             System.out.println("Вы ввели a = 0, в этом случае уравнение становится линейным, что не попадает под условия задачи.");
-        } else if (b == 0 && c != 0) {
+        } else if (Math.abs(b) <= epsilon && Math.abs(c) > epsilon) {
             System.out.println("Вы ввели b = 0, уравнение принимает вид неполного квадратного уравнения ax^2 + c = 0.");
 
-            if (-c / a >= 0) {
+            if (-c / a > epsilon) {
                 System.out.println("Уравнение имеет два корня.");
-                System.out.printf("Корень №1 = %.2f%n", Math.sqrt(-c / a));
-                System.out.printf("Корень №2 = %.2f", -(Math.sqrt(-c / a)));
+
+                double root1 = Math.sqrt(-c / a);
+                System.out.printf("Корень №1 = %.2f%n", root1);
+
+                double root2 = -(Math.sqrt(-c / a));
+                System.out.printf("Корень №2 = %.2f", root2);
             } else {
                 System.out.println("Корней нет.");
             }
-        } else if (c == 0 && b != 0) {
+        } else if (Math.abs(c) <= epsilon && Math.abs(b) > epsilon) {
             System.out.println("Вы ввели c = 0, уравнение принимает вид неполного квадратного уравнения ax^2 + bx = 0.");
             System.out.println("Уравнение имеет два корня.");
             System.out.println("Корень №1 = 0");
             System.out.printf("Корень №2 = %.2f", (-b / a));
-        } else if (b == 0 && c == 0) {
+        } else if (Math.abs(b) <= epsilon && Math.abs(c) <= epsilon) {
             System.out.println("Вы ввели b = 0 и c = 0, в данном случае уравнение имеет единственный корень.");
             System.out.println("Корень = 0");
         } else {
