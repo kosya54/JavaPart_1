@@ -30,11 +30,9 @@ public class QuadraticEquation {
             double equationRoot2 = (-b - Math.sqrt(discriminant)) / (2 * a);
 
             System.out.printf("Дискриминант равен %.2f и больше 0, уравнение имеет два корня.%nКорень №1 = %.2f%nКорень №2 = %.2f", discriminant, equationRoot1, equationRoot2);
-
         } else if (Math.abs(discriminant) <= epsilon) {
             double equationRoot = -b / (2 * a);
             System.out.printf("Дискриминант равен 0, уравнение имеет один корень.%nКорень = %.2f", equationRoot);
-
         } else if (-discriminant > epsilon) {
             System.out.printf("Дискриминант равен %.2f и меньше 0, уравнение не имеет корней", discriminant);
         }

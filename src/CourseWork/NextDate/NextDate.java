@@ -1,52 +1,89 @@
 package CourseWork.NextDate;
 
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
-import java.util.Date;
 
 public class NextDate {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите дату в формате dd.mm.yyyy:");
-        String enteredDate = scanner.nextLine();
+        System.out.println("Введите дату в формате dd.mm.yyyy, год не должен превышать 3000:");
+        int[] enteredDate = convertStringToIntegerArray(scanner.nextLine());
 
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        final int maxYear = 3000;
+        final int minYear = 1000;
+        final int countMonths = 12;
+        int countDays = 31;
 
-        String currentDate = dateFormat.format(date);
+        int day = enteredDate[0];
+        int month = enteredDate[1];
+        int year = enteredDate[2];
 
-        if (!enteredDate.equals(currentDate)) {
-            System.out.printf("Вы ввели дату: %s, но сегодня %s.%n", enteredDate, currentDate);
-
-            while(true) {
-                System.out.println("Введите сегодняшнюю дату в формате dd.mm.yyyy:");
-                enteredDate = scanner.nextLine();
-
-                if (enteredDate.equals(currentDate)) {
-                    break;
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                break;
+            case 2:
+                if (checkLeapYear(year)) {
+                    countDays = 29;
+                } else {
+                    countDays = 28;
                 }
-            }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                countDays = 30;
+                break;
         }
 
-        System.out.println("Бла бла день + 1");
-//        int[] enteredDate = convertStringToInteger(scanner.nextLine());
+        if (day > countDays || day <= 0) {
+            System.out.printf("Вы ввели не корректный день %d, день не может быть равен 0 и не может превышать %d.", day, countDays);
+        } else if (month > countMonths || month <= 0) {
+            System.out.printf("Вы ввели не корректный месяц %d, месяц не может быть равен 0 и не может превышать %d.", month, countMonths);
+        } else if (year > maxYear || year < minYear) {
+            System.out.printf("Вы ввели не корректный год, год не должен превышать %d.", maxYear);
+        } else {
+            if (day < countDays) {
+                day += 1;
+            } else if (day == countDays && month < countMonths) {
+                day = 1;
+                month += 1;
+            } else {
+                day = 1;
+                month = 1;
+                year += 1;
+            }
 
-/*        int enteredDay = enteredDate[0];
-        int enteredMonth = enteredDate[1];
-        int enteredYear = enteredDate[2]; */
+            String stringDay = "%d";
+            String stringMonth = "%d";
 
-//        System.out.printf("День: %d Месяц: %d Год: %d", enteredDay, enteredMonth, enteredYear);
+            if (day < 10) {
+                stringDay = "%02d";
+            }
+            if (month < 10) {
+                stringMonth = "%02d";
+            }
+            System.out.printf("Следующий день: " + stringDay + "." + stringMonth + ".%d", day, month, year);
+        }
     }
 
-    private static int[] convertStringToInteger(String string) {
+    private static int[] convertStringToIntegerArray(String string) {
         String[] splitString = string.split("[.]");
         int[] intArray = new int[splitString.length];
 
         for (int i = 0; i < splitString.length; i++) {
             intArray[i] = Integer.parseInt(splitString[i]);
         }
-
         return intArray;
+    }
+
+    private static boolean checkLeapYear(int year) {
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 }
