@@ -18,23 +18,33 @@ public class QuadraticEquation {
         double c = scanner.nextDouble();
 
         double epsilon = 1.0e-10;
-        double discriminant = calculateDiscriminant(a, b, c);
 
-        if (Math.abs(a) <= epsilon && Math.abs(b) > epsilon && Math.abs(c) > epsilon) {
-            System.out.printf("Вы ввели а равным %.0f, данное уравнение принимает вид линейного уравнения bx + c = 0.", a);
+        if (Math.abs(a) > epsilon) {
+            double discriminant = calculateDiscriminant(a, b, c);
 
-            double equationRoot = -c / b;
-            System.out.printf("%nКорень = %.2f", equationRoot);
-        } else if (discriminant > epsilon) {
-            double equationRoot1 = (-b + Math.sqrt(discriminant)) / (2 * a);
-            double equationRoot2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            if (discriminant > epsilon) {
+                double equationRoot1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                double equationRoot2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                System.out.printf("Дискриминант равен %.2f и больше 0, уравнение имеет два корня.%nКорень №1 = %.2f%nКорень №2 = %.2f", discriminant, equationRoot1, equationRoot2);
+            } else if (Math.abs(discriminant) <= epsilon) {
+                double equationRoot = -b / (2 * a);
+                System.out.printf("Дискриминант равен 0, уравнение имеет один корень.%nКорень = %.2f", equationRoot);
+            } else {
+                System.out.printf("Дискриминант равен %.2f и меньше 0, уравнение не имеет корней", discriminant);
+            }
+        } else {
+            System.out.printf("Вы ввели a = %.0f уравнение принимает вид линейного.%n", a);
 
-            System.out.printf("Дискриминант равен %.2f и больше 0, уравнение имеет два корня.%nКорень №1 = %.2f%nКорень №2 = %.2f", discriminant, equationRoot1, equationRoot2);
-        } else if (Math.abs(discriminant) <= epsilon) {
-            double equationRoot = -b / (2 * a);
-            System.out.printf("Дискриминант равен 0, уравнение имеет один корень.%nКорень = %.2f", equationRoot);
-        } else if (-discriminant > epsilon) {
-            System.out.printf("Дискриминант равен %.2f и меньше 0, уравнение не имеет корней", discriminant);
+            if (Math.abs(a) <= epsilon && Math.abs(b) > epsilon && Math.abs(c) > epsilon) {
+                double equationRoot = -c / b;
+                System.out.printf("Корень уравнения равен: %.2f", equationRoot);
+            } else if (Math.abs(a) <= epsilon && Math.abs(b) <= epsilon && Math.abs(c) > epsilon) {
+                System.out.println("Решений нет");
+            } else if (Math.abs(a) <= epsilon && Math.abs(b) > epsilon && Math.abs(c) <= epsilon) {
+                System.out.println("Корень уравнения равен 0");
+            } else {
+                System.out.println("Корень уравнения равен любому числу");
+            }
         }
     }
 

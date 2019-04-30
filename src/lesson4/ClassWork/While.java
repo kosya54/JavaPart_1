@@ -1,4 +1,4 @@
-package Lesson4.ClassWork;
+package lesson4.ClassWork;
 
 public class While {
     public static void main(String[] args) {
