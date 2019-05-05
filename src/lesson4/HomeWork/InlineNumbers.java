@@ -7,26 +7,27 @@ public class InlineNumbers {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите начало диапазона:");
-        int i = scanner.nextInt();
+        int startPosition = scanner.nextInt();
 
         System.out.println("Введите конец диапазона:");
         int endPosition = scanner.nextInt();
 
         System.out.println("Введите количество чисел в строке:");
-        int countNumbers = scanner.nextInt();
+        int numbersCount = scanner.nextInt();
 
-        int j = 1;
+        int i = 1;
         int shift = calculateNumberLength(endPosition);
 
-        while (i <= endPosition) {
-            System.out.printf("%" + shift + "d ", i);
+        while (startPosition <= endPosition) {
+            String separator = "";
 
-            if (j == countNumbers) {
-                System.out.println();
-                j = 0;
+            if (i == numbersCount) {
+                separator = "%n";
+                i = 0;
             }
-            j++;
+            System.out.printf("%" + shift + "d " + separator, startPosition);
             i++;
+            startPosition++;
         }
     }
 

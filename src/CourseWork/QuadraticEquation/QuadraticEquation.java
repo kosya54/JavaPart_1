@@ -32,19 +32,13 @@ public class QuadraticEquation {
             } else {
                 System.out.printf("Дискриминант равен %.2f и меньше 0, уравнение не имеет корней", discriminant);
             }
-        } else {
+        } else if (Math.abs(b) > epsilon) {
             System.out.printf("Вы ввели a = %.0f уравнение принимает вид линейного.%n", a);
 
-            if (Math.abs(a) <= epsilon && Math.abs(b) > epsilon && Math.abs(c) > epsilon) {
-                double equationRoot = -c / b;
-                System.out.printf("Корень уравнения равен: %.2f", equationRoot);
-            } else if (Math.abs(a) <= epsilon && Math.abs(b) <= epsilon && Math.abs(c) > epsilon) {
-                System.out.println("Решений нет");
-            } else if (Math.abs(a) <= epsilon && Math.abs(b) > epsilon && Math.abs(c) <= epsilon) {
-                System.out.println("Корень уравнения равен 0");
-            } else {
-                System.out.println("Корень уравнения равен любому числу");
-            }
+            double equationRoot = -c / b;
+            System.out.printf("Корень = %.2f", equationRoot);
+        } else {
+            System.out.printf("Вы ввели a = %.0f, b = %.0f и с = %.0f, корень уравнения равен любому числу.", a, b, c);
         }
     }
 
