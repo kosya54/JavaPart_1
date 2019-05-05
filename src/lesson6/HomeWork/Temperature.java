@@ -10,7 +10,7 @@ public class Temperature {
         int enteredTemperature = scanner.nextInt();
 
         System.out.printf("%d градусов цельсия равно %.2f градусов кельвина%n", enteredTemperature, convertToKelvin(enteredTemperature));
-        System.out.printf("%d градусов цельсия равно %.2f градусов по фаренгейту", enteredTemperature, convertToFahrengeit(enteredTemperature));
+        System.out.printf("%d градусов цельсия равно %.2f градусов по фаренгейту", enteredTemperature, convertToFahrenheit(enteredTemperature));
 
     }
 
@@ -18,7 +18,7 @@ public class Temperature {
         return temperature + 273.15;
     }
 
-    private static double convertToFahrengeit(int temperature) {
+    private static double convertToFahrenheit(int temperature) {
         return (temperature * 9 / 5) + 32;
     }
 }
