@@ -37,6 +37,8 @@ public class QuadraticEquation {
 
             double equationRoot = -c / b;
             System.out.printf("Корень = %.2f", equationRoot);
+        } else if (Math.abs(c) > epsilon) {
+            System.out.println("Уравнение не имеет корней.");
         } else {
             System.out.printf("Вы ввели a = %.0f, b = %.0f и с = %.0f, корень уравнения равен любому числу.", a, b, c);
         }

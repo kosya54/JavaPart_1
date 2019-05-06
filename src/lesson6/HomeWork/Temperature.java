@@ -6,20 +6,22 @@ public class Temperature {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите температуру в градусах цельсия:");
-        int enteredTemperature = scanner.nextInt();
+        final String degree = "\u00B0";
 
-        System.out.printf("%d градусов цельсия равно %.2f градусов кельвина%n", enteredTemperature, convertToKelvin(enteredTemperature));
-        System.out.printf("%d градусов цельсия равно %.2f градусов по фаренгейту", enteredTemperature, convertToFahrenheit(enteredTemperature));
+        System.out.printf("Введите температуру в %sC: ", degree);
+        int degreesCelsius = scanner.nextInt();
+
+        System.out.printf("%d%s C равно %.2f K%n", degreesCelsius, degree, convertCelsiusToKelvin(degreesCelsius));
+        System.out.printf("%d%s C равно %.2f F%s", degreesCelsius, degree, convertCelsiusToFahrenheit(degreesCelsius), degree);
 
     }
 
-    private static double convertToKelvin(int temperature) {
-        return temperature + 273.15;
+    private static double convertCelsiusToKelvin(int degreesCelsius) {
+        return degreesCelsius + 273.15;
     }
 
-    private static double convertToFahrenheit(int temperature) {
-        return (temperature * 9 / 5) + 32;
+    private static double convertCelsiusToFahrenheit(int degreesCelsius) {
+        return (degreesCelsius * 9 / 5) + 32;
     }
 }
 
