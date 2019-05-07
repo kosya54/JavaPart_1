@@ -1,4 +1,4 @@
-package lesson6.HomeWork;
+package lesson6;
 
 import java.util.Scanner;
 import java.util.ArrayList;
