@@ -12,8 +12,6 @@ public class Break {
             if (secretString.equals(scanner.nextLine())) {
                 System.out.printf("Вы угадали строку! Строка: %s.", secretString);
                 break;
-            } else {
-                System.out.println("Не верно.");
             }
         }
     }
