@@ -13,7 +13,7 @@ public class MultiplicationTable {
         String verticalLine = String.format("%" + shift + "s|", "");
         //Вывод шапки таблицы
         System.out.print(verticalLine);
-        for (int f = 1; f <= end; ++f) {
+        for (int f = 1; f <= end; f++) {
             String separator = getSeparator(f, end);
             System.out.printf("%" + shift + "d" + separator, f);
         }
@@ -26,7 +26,7 @@ public class MultiplicationTable {
             ++k;
         }
         //Вывод левого столбца с цифрами, с разделителем и заполнение таблицы умножения
-        for (int i = 1; i <= end; ++i) {
+        for (int i = 1; i <= end; i++) {
             System.out.printf("%" + shift + "d|", i);
             for (int j = 1; j <= end; ++j) {
                 String separator = getSeparator(j, end);
