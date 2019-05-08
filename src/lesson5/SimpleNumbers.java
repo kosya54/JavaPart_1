@@ -10,29 +10,23 @@ public class SimpleNumbers {
         int end = scanner.nextInt();
 
         if (end <= 1) {
-            System.out.println("Введенное число должно быть меньше или равно 1.");
+            System.out.println("Введенное число не должно быть меньше или равно 1.");
         } else {
-            int i = 2;
-            while (i <= end) {
-                int divider = 2;
+            for (int i = 2; i <= end; ++i) {
                 boolean needContinue = false;
-                while (divider <= 9) {
+                for (int divider = 2; divider <= 9; ++divider) {
                     if (divider == i) {
-                        ++divider;
                         continue;
                     }
                     if (i % divider == 0) {
                         needContinue = true;
                         break;
                     }
-                    ++divider;
                 }
                 if (needContinue) {
-                    ++i;
                     continue;
                 }
-                System.out.printf("%d ", i);
-                ++i;
+                System.out.print(i + " ");
             }
         }
     }
