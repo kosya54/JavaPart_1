@@ -1,4 +1,4 @@
-package lesson6.Contact;
+package lesson7.Contact;
 
 public class MainContact {
     public static void main(String[] args) {

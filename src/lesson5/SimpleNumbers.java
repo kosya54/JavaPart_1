@@ -13,17 +13,14 @@ public class SimpleNumbers {
             System.out.println("Введенное число не должно быть меньше или равно 1.");
         } else {
             for (int i = 2; i <= end; i++) {
-                boolean needContinue = false;
-                for (int divider = 2; divider <= 9; divider++) {
-                    if (divider == i) {
-                        continue;
-                    }
-                    if (i % divider == 0) {
-                        needContinue = true;
+                boolean skipCompoundNumber = false;
+                for (int j = 2; j < i; j++) {
+                    if (i % j == 0) {
+                        skipCompoundNumber = true;
                         break;
                     }
                 }
-                if (needContinue) {
+                if (skipCompoundNumber) {
                     continue;
                 }
                 System.out.print(i + " ");

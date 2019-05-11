@@ -1,4 +1,4 @@
-package lesson6.Contact;
+package lesson7.Contact;
 
 public class Contact {
     private String surname;

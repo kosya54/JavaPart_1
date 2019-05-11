@@ -12,18 +12,19 @@ public class EuclideanAlgorithm {
         System.out.println("Введите b:");
         int b = scanner.nextInt();
 
-        if (a % b == 0) {
+        if (a == 0 || b == 0) {
+            System.out.println("a или b не должны быть равны нулю.");
+        } else if (a % b == 0) {
             System.out.printf("НОД a на b равен: %d", b);
         } else {
-            int nod = 0;
-            int rest;
-            while (a != 0 && b != 0) {
-                rest = a % b;
+            int divisor = 0;
+            while ((a > 0 && b > 0) || (a < 0 && b < 0)) {
+                int rest = a % b;
                 a = b;
                 b = rest;
-                nod = a;
+                divisor = a;
             }
-            System.out.printf("НОД: %d", nod);
+            System.out.printf("НОД: %d", divisor);
         }
     }
 }

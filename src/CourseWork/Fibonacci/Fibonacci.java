@@ -9,14 +9,19 @@ public class Fibonacci {
         System.out.println("Введите номер числа в числовом ряду Фибоначчи:");
         int n = scanner.nextInt();
 
-        int f1 = 1;
-        int f2 = 1;
-        int f3 = 0;
-        for (int i = 3; i <= n; i++) {
-            f3 = f1 + f2;
-            f1 = f2;
-            f2 = f3;
+        int fn = 0;
+
+        if (n == 1 || n == 2) {
+            fn = 1;
+        } else {
+            int f1 = 1;
+            int f2 = 1;
+            for (int i = 3; i <= n; i++) {
+                fn = f1 + f2;
+                f1 = f2;
+                f2 = fn;
+            }
         }
-        System.out.printf("%n%d", f3);
+        System.out.printf("%d", fn);
     }
 }
