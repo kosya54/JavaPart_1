@@ -3,7 +3,6 @@ package lesson7.HomeWork.Range;
 public class Range {
     private double from;
     private double to;
-    final double epsilon = 1.0e-10;
 
     public Range(double from, double to) {
         this.from = from;
@@ -26,12 +25,12 @@ public class Range {
         this.to = to;
     }
 
-    public double getLength() {
+    double getLength() {
         return this.to - this.from;
     }
 
-    //TODO: сделать парвильную проверку
     boolean isInside(double number) {
-        return (number <= this.to) && (number >= this.from);
+        double epsilon = 1.0e-10;
+        return (this.to - number >= -epsilon) && (number - this.from >= -epsilon);
     }
 }
