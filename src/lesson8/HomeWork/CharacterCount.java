@@ -9,14 +9,14 @@ public class CharacterCount {
         System.out.println("Введите строку:");
         String enteredString = scanner.nextLine();
 
-        int charCount = 0;
+        int lettersCount = 0;
         int digitCount = 0;
         int whitespaceCount = 0;
         int otherCount = 0;
 
         for (int i = 0; i < enteredString.length(); i++) {
             if (Character.isLetter(enteredString.charAt(i))) {
-                ++charCount;
+                ++lettersCount;
             } else if (Character.isDigit(enteredString.charAt(i))) {
                 ++digitCount;
             } else if (Character.isWhitespace(enteredString.charAt(i))) {
@@ -27,6 +27,6 @@ public class CharacterCount {
         }
 
         System.out.printf("Введенная строка: %s%n", enteredString);
-        System.out.printf("Число букв: %d, число цифр: %d, число пробелов: %d, остальные символы: %d", charCount, digitCount, whitespaceCount, otherCount);
+        System.out.printf("Число букв: %d, число цифр: %d, число пробелов: %d, остальные символы: %d", lettersCount, digitCount, whitespaceCount, otherCount);
     }
 }
