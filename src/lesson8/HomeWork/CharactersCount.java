@@ -2,7 +2,7 @@ package lesson8.HomeWork;
 
 import java.util.Scanner;
 
-public class CharacterCount {
+public class CharactersCount {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

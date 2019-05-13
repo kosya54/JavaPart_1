@@ -14,20 +14,21 @@ public class GuessNumber {
         Random random = new Random();
         int randomNumber = random.nextInt(diff + 1);
 
-        int count = 0;
+        int attemptsCount = 0;
+        System.out.printf("Угадайте число от %d до %d: ", start, end);
         while (true) {
-            System.out.println("Угадайте число от 1 до 100:");
             int enteredNumber = scanner.nextInt();
-
-            ++count;
+            ++attemptsCount;
             if (enteredNumber == randomNumber) {
-                System.out.printf("Верно! Вы угадали число: %d.%nВы угадали с %d раза.", enteredNumber, count);
+                System.out.printf("Верно! Вы угадали число: %d.%nВы угадали с %d раза.", enteredNumber, attemptsCount);
                 break;
             } else if (enteredNumber > randomNumber) {
                 System.out.println("Введенное число больше загаданного.");
             } else {
                 System.out.println("Введенное число меньше загаданного.");
             }
+            System.out.println("Попытаемся еще раз?");
+            System.out.println("Введите число: ");
         }
     }
 }

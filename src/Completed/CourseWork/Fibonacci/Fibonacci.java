@@ -1,4 +1,4 @@
-package CourseWork.Fibonacci;
+package Completed.CourseWork.Fibonacci;
 
 import java.util.Scanner;
 

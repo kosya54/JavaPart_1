@@ -1,8 +1,8 @@
-package lesson5;
+package Completed.lesson5.HomeWork;
 
 import java.util.Scanner;
 
-public class SimpleNumbers {
+public class isCompoundNumber {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

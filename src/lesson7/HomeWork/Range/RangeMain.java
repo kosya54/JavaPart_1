@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class RangeMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-//TODO: Сделать нормальный ввод Range сразу x и y
+
         System.out.println("Введите Х:");
         double x = scanner.nextDouble();
 
@@ -14,10 +14,20 @@ public class RangeMain {
 
         Range range = new Range(x, y);
 
+        System.out.printf("Вы ввели X: %.2f и Y: %.2f, длина диапазона равна: %.2f%n", range.getFrom(), range.getTo(), range.getLength());
+
         System.out.println("Введите число:");
         double number = scanner.nextDouble();
 
-        System.out.printf("%.2f - %b%n", number, range.isInside(number));
-        System.out.printf("%.2f", range.getLength());
+        if (range.isInside(number)) {
+            System.out.printf("Число %.2f принадлежит диапазону %.2f : %.2f", number, range.getFrom(), range.getTo());
+        } else {
+            System.out.printf("Число %.2f не принадлежит диапазону %.2f : %.2f%n", number, range.getFrom(), range.getTo());
+
+            System.out.println("Подгоняю диапазон под указанное число.");
+            range.setFrom(range.getFrom() * number);
+            range.setTo(range.getTo() * number);
+            System.out.printf("Число %.2f принадлежит диапазону %.2f : %.2f", number, range.getFrom(), range.getTo());
+        }
     }
 }

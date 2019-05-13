@@ -4,19 +4,29 @@ import java.util.Scanner;
 
 public class CostOrder {
     public static void main(String[] args) {
-        int productCount = 0;
-        int productCost = 0;
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.printf("В заказе %d единиц товара");
+        final int discount1 = 5;
+        final int discount2 = 10;
+        final int quantityDiscount = 10;
+        final int priceDiscount = 1000;
+
+        System.out.println("Введите количество товара:");
+        int orderCount = scanner.nextInt();
+
+        System.out.println("Введите стоимость товара товара:");
+        int orderCost = scanner.nextInt();
+
+        if (orderCount >= quantityDiscount && orderCost >= priceDiscount) {
+            System.out.printf("Скидка составляет: %d%%, стоимость товара с учетом скидки: %.2f рублей", discount2, getCost(discount2, orderCost));
+        } else if (orderCount >= quantityDiscount || orderCost >= priceDiscount) {
+            System.out.printf("Скидка составляет: %d%%, стоимость товара с учетом скидки: %.2f рублей", discount1, getCost(discount1, orderCost));
+        } else {
+            System.out.printf("Стоимость товара: %d", orderCost);
+        }
     }
 
-    private static int getDiscount(int productCount, int productCost) {
-        if (productCount >= 10 || productCost >= 1000) {
-            if (productCount >= 10 && productCost >= 1000) {
-                return 10;
-            }
-            return 5;
-        }
-        return 0;
+    private static double getCost(int discount, int orderCost) {
+        return orderCost - ((orderCost / 100) * discount);
     }
 }
