@@ -1,4 +1,4 @@
-package lesson7.Contact;
+package Completed.lesson7.ClassWork.Contact;
 
 public class Contact {
     private String surname;

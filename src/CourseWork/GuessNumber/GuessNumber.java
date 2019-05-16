@@ -9,10 +9,9 @@ public class GuessNumber {
 
         int start = 1;
         int end = 100;
-        int diff = end - start;
 
         Random random = new Random();
-        int randomNumber = random.nextInt(diff + 1);
+        int randomNumber = start + random.nextInt(end - start + 1);
 
         int attemptsCount = 0;
         System.out.printf("Угадайте число от %d до %d: ", start, end);
@@ -22,7 +21,9 @@ public class GuessNumber {
             if (enteredNumber == randomNumber) {
                 System.out.printf("Верно! Вы угадали число: %d.%nВы угадали с %d раза.", enteredNumber, attemptsCount);
                 break;
-            } else if (enteredNumber > randomNumber) {
+            }
+
+            if (enteredNumber > randomNumber) {
                 System.out.println("Введенное число больше загаданного.");
             } else {
                 System.out.println("Введенное число меньше загаданного.");

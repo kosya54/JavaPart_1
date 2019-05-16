@@ -1,4 +1,4 @@
-package lesson7.HomeWork.Range;
+package Completed.lesson7.HomeWork.Range;
 
 public class Range {
     private double from;

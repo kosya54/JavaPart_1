@@ -12,24 +12,21 @@ public class EuclideanAlgorithm {
         System.out.println("Введите b:");
         int b = scanner.nextInt();
 
+        int divisor = 0;
         if (a == 0 && b == 0) {
             System.out.println("a и b не должны быть равны нулю.");
+        } else if (b == 0) {
+            divisor = a;
+        } else if (a % b == 0) {
+            divisor = b;
         } else {
-            while (a != 0 && b != 0) {
-                if (a > b) {
-                    a = a % b;
-                } else {
-                    b = b % a;
-                }
-            }
-
-            int divisor;
-            if (a == 0) {
-                divisor = b;
-            } else {
+            while (b != 0) {
+                int rest = a % b;
+                a = b;
+                b = rest;
                 divisor = a;
             }
-            System.out.printf("НОД: %d", divisor);
         }
+        System.out.printf("НОД: %d", divisor);
     }
 }
