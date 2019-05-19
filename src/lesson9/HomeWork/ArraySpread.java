@@ -13,15 +13,13 @@ public class ArraySpread {
 
         System.out.println("Инвертированный массив:");
         System.out.println(Arrays.toString(array));
-
-        //TODO: Сделать void функцию, которая разворачивает элементы массива, не создавая новый массив
     }
 
     private static void invertArray(int[] array) {
-        for (int i = 0, j = array.length - 1; i < array.length; i++, j--) {
-            int element = array[i];
-            System.out.println(element);
-            array[j] = element;
+        for (int i = 0, j = array.length - 1; i < array.length / 2; i++, j--) {
+            int element = array[j];
+            array[j] = array[i];
+            array[i] = element;
         }
     }
 }

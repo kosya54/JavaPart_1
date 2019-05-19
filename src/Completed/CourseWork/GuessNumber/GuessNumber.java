@@ -1,4 +1,4 @@
-package CourseWork.GuessNumber;
+package Completed.CourseWork.GuessNumber;
 
 import java.util.Scanner;
 import java.util.Random;
