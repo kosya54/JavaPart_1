@@ -1,33 +1,23 @@
 package lesson9.HomeWork;
 
-import java.util.Random;
+import java.util.Arrays;
 
 public class FindMax {
     public static void main(String[] args) {
-        int arrayLength = 100;
-        double[] array = generateArray(arrayLength);
+        double[] array1 = {-1.2, -2.6, -5.8, -9.77, -99.7, -45.7};
+        double[] array2 = {1.2, 2.6, 5.8, 9.77, 99.7, 45.7};
 
-        System.out.printf("Максимальное число в массиве равно: %f", findMaxNumber(array));
-    }
+        System.out.println(Arrays.toString(array1));
+        System.out.printf("Максимальное число в массиве равно: %.2f%n", findMaxNumber(array1));
 
-    private static double[] generateArray(int arrayLength) {
-        double start = 1;
-        double end = 1000;
-
-        Random random = new Random();
-
-        double[] array = new double[arrayLength];
-        for (int i = 0; i < arrayLength; i++) {
-            array[i] = start + (end - start) * random.nextDouble();
-        }
-        return array;
+        System.out.println(Arrays.toString(array2));
+        System.out.printf("Максимальное число в массиве равно: %.2f", findMaxNumber(array2));
     }
 
     private static double findMaxNumber(double[] array) {
-        double max = 0;
-        double epsilon = 1.0e-10;
+        double max = array[0];
         for (double value : array) {
-            if (value - max > epsilon) {
+            if (value > max) {
                 max = value;
             }
         }

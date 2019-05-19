@@ -14,7 +14,7 @@ public class Deposit {
 
             double epsilon = 1.0e-10;
 
-            if (-depositAmount >= -epsilon) {
+            if (depositAmount <= epsilon) {
                 System.out.println("Сумма не может быть меньше или равна нулю.");
             } else {
                 break;
@@ -74,12 +74,10 @@ public class Deposit {
     }
 
     private static double calculateProfit(double deposit, int annualInterestRate, int daysCount, int daysInYear, int monthCount) {
-        int i = 1;
         double sum;
-        while (i <= monthCount) {
+        for (int i = 1; i <= monthCount; i++) {
             sum = ((deposit * annualInterestRate * daysCount) / daysInYear) / 100;
-            deposit = sum + deposit;
-            ++i;
+            deposit += sum;
         }
         return deposit;
     }

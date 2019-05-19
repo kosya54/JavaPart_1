@@ -1,4 +1,4 @@
-package CourseWork.EuclideanAlgorithm;
+package Completed.CourseWork.EuclideanAlgorithm;
 
 import java.util.Scanner;
 
