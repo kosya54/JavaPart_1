@@ -1,4 +1,4 @@
-package lesson9.HomeWork;
+package Completed.lesson9.HomeWork;
 
 public class ToUpperCase {
     public static void main(String[] args) {

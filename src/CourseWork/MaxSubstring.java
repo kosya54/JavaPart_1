@@ -1,7 +1,9 @@
+package CourseWork;
+
 public class MaxSubstring {
     public static void main(String[] args) {
         String string = "Baa Bddddddddf cfb fdyyyyyyygfgfn dfj ghj fgjf gfhj gj llllllllllllLlllLlllLLllllllllll ghjghfj gj fghjgjhgjg ghjhgjh ghjghhjgf gjh ghjgf gj gjhfg ";
-        System.out.printf("В строке \"%s\"%nдлина максимальной подстроки состоящей из одного символа равна: %d", string, findMaxSubstringLength(string));
+        System.out.printf("В строке \"%s\"%n длина максимальной подстроки состоящей из одного символа равна: %d", string, findMaxSubstringLength(string));
     }
     
     private static int findMaxSubstringLength(String string) {

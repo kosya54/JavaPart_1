@@ -1,4 +1,4 @@
-package CourseWork.Deposit;
+package CourseWork;
 
 import java.util.Scanner;
 
@@ -31,16 +31,18 @@ public class Deposit {
             }
         }
 
-        final double annualInterestRate = 10.5;
-        double deposit = calculateProfit(annualInterestRate, depositAmount, monthCount);
-        System.out.printf("Сумма вклада с учетом процентов за %d мес. при ставке %.2f%% годовых составит: %.2f рублей.%n", monthCount, annualInterestRate, deposit);
+        double deposit = calculateProfit(depositAmount, monthCount);
+        System.out.printf("Сумма вклада с учетом процентов за %d мес. составит: %.2f рублей.%n", monthCount, deposit);
         System.out.printf("Прибыль за данный период составляет: %.2f рублей.", deposit - depositAmount);
     }
 
-    private static double calculateProfit(double annualInterestRate, double depositAmount, int monthCount) {
-        final int daysCount = 30;
-        final int daysInYear = 365;
-        
-        return depositAmount * Math.pow((1 + (annualInterestRate * daysCount) / (100 * daysInYear)), monthCount);
+    private static double calculateProfit(double depositAmount, int monthCount) {
+        final double annualInterestRate = 14;
+        double percentPerMonth = annualInterestRate / 12;
+
+        for (int i = 1; i <= monthCount; i++) {
+            depositAmount *= ((100 + percentPerMonth) / 100);
+        }
+        return depositAmount;
     }
 }

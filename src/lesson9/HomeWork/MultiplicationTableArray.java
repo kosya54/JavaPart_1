@@ -8,6 +8,7 @@ public class MultiplicationTableArray {
 
         System.out.println("Введите размер таблицы умножения:");
         int size = scanner.nextInt();
+        
         int[][] multiplicationTableArray = getMultiplicationTable(size);
         int shift = calculateNumberLength((int) Math.pow(size, 2));
 
@@ -20,16 +21,16 @@ public class MultiplicationTableArray {
         System.out.println();
 
         System.out.print(leftMargin);
-        for (int i = 1; i <= (shift * size); i++) {
+        for (int headerUnderLine = 1; headerUnderLine <= (shift * size); headerUnderLine++) {
             System.out.print("-");
         }
         System.out.println();
 
         int leftColumn = 1;
-        for (int[] i : multiplicationTableArray) {
+        for (int[] multiplicationResultArray : multiplicationTableArray) {
             System.out.printf("%" + shift + "d|", leftColumn);
-            for (int j : i) {
-                System.out.printf("%" + shift + "d", j);
+            for (int multiplicationResult : multiplicationResultArray) {
+                System.out.printf("%" + shift + "d", multiplicationResult);
             }
             ++leftColumn;
             System.out.println();
@@ -39,14 +40,10 @@ public class MultiplicationTableArray {
     private static int[][] getMultiplicationTable(int size) {
         int[][] array = new int[size][size];
 
-        int a = 1;
         for (int i = 0; i < size; i++) {
-            int b = 1;
             for (int j = 0; j < size; j++) {
-                array[i][j] = a * b;
-                ++b;
+                array[i][j] = (i + 1) * (j + 1);
             }
-            ++a;
         }
         return array;
     }

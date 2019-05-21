@@ -7,31 +7,27 @@ public class CheckArraySorting {
         int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int[] array2 = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
-        System.out.printf("Массив %s отсортирован по возрастанию? - %b.%n", Arrays.toString(array1), isArraySortingAscending(array1));
-        System.out.printf("Массив %s отсортирован по возрастанию? - %b.%n", Arrays.toString(array2), isArraySortingAscending(array2));
-        System.out.printf("Массив %s отсортирован по убыванию? - %b.%n", Arrays.toString(array1), isArraySortingDescending(array1));
-        System.out.printf("Массив %s отсортирован по убыванию? - %b.", Arrays.toString(array2), isArraySortingDescending(array2));
+        System.out.printf("Массив %s отсортирован по возрастанию? - %b.%n", Arrays.toString(array1), isArraySortedAscending(array1));
+        System.out.printf("Массив %s отсортирован по возрастанию? - %b.%n", Arrays.toString(array2), isArraySortedAscending(array2));
+        System.out.printf("Массив %s отсортирован по убыванию? - %b.%n", Arrays.toString(array1), isArraySortedDescending(array1));
+        System.out.printf("Массив %s отсортирован по убыванию? - %b.", Arrays.toString(array2), isArraySortedDescending(array2));
     }
 
-    private static boolean isArraySortingAscending(int[] array) {
-        boolean ascendingSorting = false;
+    private static boolean isArraySortedAscending(int[] array) {
         for (int i = 1; i < array.length; i++) {
-            ascendingSorting = array[i - 1] < array[i];
-            if (!ascendingSorting) {
-                break;
+            if (array[i - 1] > array[i]) {
+                return false;
             }
         }
-        return ascendingSorting;
+        return true;
     }
 
-    private static boolean isArraySortingDescending(int[] array) {
-        boolean descendingSorting = false;
+    private static boolean isArraySortedDescending(int[] array) {
         for (int i = 1; i < array.length; i++) {
-            descendingSorting = array[i - 1] > array[i];
-            if (!descendingSorting) {
-                break;
+            if (array[i - 1] < array[i]) {
+                return false;
             }
         }
-        return descendingSorting;
+        return true;
     }
 }
