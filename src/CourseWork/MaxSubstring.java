@@ -3,7 +3,6 @@ package CourseWork;
 public class MaxSubstring {
     public static void main(String[] args) {
         String string = "Baa Bddddddddf cfb fdyyyyyyygfgfn dfj ghj fgjf gfhj gj llllllllllllLlllLlllLLllllllllll ghjghfj gj fghjgjhgjg ghjhgjh ghjghhjgf gjh ghjgf gj gjhfg ";
-//        String string = "";
         System.out.printf("В строке \"%s\"%n длина максимальной подстроки состоящей из одного символа равна: %d", string, findMaxSubstringLength(string));
     }
 
