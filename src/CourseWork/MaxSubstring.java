@@ -2,10 +2,9 @@ package CourseWork;
 
 public class MaxSubstring {
     public static void main(String[] args) {
-        String string = "Aaaaaaabv dfveeeees dfssdg dfgZZzzzZZzzZ fghdfghdf";
-        
+        //TODO: Не считает при одном симоле, поправить
+        String string = "7";
         System.out.printf("В строке \"%s\"%n длина максимальной подстроки состоящей из одного символа равна: %d", string, findMaxSubstringLength(string));
-        System.out.println();
     }
 
     private static int findMaxSubstringLength(String string) {
