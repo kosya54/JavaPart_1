@@ -2,8 +2,8 @@ package CourseWork;
 
 public class MaxSubstring {
     public static void main(String[] args) {
-        //TODO: Не считает при одном симоле, поправить
-        String string = "7";
+        //TODO: Не считает при одном симоле, поправить: сделать проверку, если один символ - вернуть 1
+        String string = "77";
         System.out.printf("В строке \"%s\"%n длина максимальной подстроки состоящей из одного символа равна: %d", string, findMaxSubstringLength(string));
     }
 
