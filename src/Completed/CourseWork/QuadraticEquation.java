@@ -1,4 +1,4 @@
-package Completed.CourseWork.QuadraticEquation;
+package Completed.CourseWork;
 
 import java.util.Scanner;
 

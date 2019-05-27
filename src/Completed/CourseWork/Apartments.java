@@ -1,4 +1,4 @@
-package Completed.CourseWork.Apartments;
+package Completed.CourseWork;
 
 import java.util.Scanner;
 

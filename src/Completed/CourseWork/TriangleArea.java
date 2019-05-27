@@ -1,4 +1,4 @@
-package Completed.CourseWork.TriangleArea;
+package Completed.CourseWork;
 
 import java.util.Scanner;
 

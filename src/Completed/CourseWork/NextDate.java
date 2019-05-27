@@ -1,4 +1,4 @@
-package Completed.CourseWork.NextDate;
+package Completed.CourseWork;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package Completed.CourseWork.MultiplicationTable;
+package Completed.CourseWork;
 
 import java.util.Scanner;
 

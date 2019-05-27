@@ -1,6 +1,7 @@
 package CourseWork;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class BinarySearch {
     public static void main(String[] args) {
@@ -8,29 +9,50 @@ public class BinarySearch {
 
         int[] a = {2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-        System.out.println("Введите X: ");
+        System.out.printf("Поиск индекса числа в массиве: %s.%n", Arrays.toString(a));
+
+        System.out.println("Введите искомое число: ");
         int x = scanner.nextInt();
 
-        System.out.printf("Искомый индекс равен: %d", binarySearch(a, a[0], a[a.length - 1], x));
+        int left = 0;
+        int right = a.length - 1;
+
+        System.out.printf("Рекурсивный бинарный поиск.%nИндекс %d равен: %d.%n%n", x, recursionBinarySearch(a, left, right, x));
+        System.out.printf("Не рекурсивный бинарный поиск.%nИндекс %d равен: %d.", x, binarySearch(a, left, right, x));
     }
 
-    private static int binarySearch(int[] a, int left, int right, int x) {
+    private static int recursionBinarySearch(int[] a, int left, int right, int x) {
         if (left > right) {
             return -1;
         }
-
         int middle = (right + left) / 2;
+
         if (x == a[middle]) {
             return middle;
         }
 
         if (x > a[middle]) {
-            return binarySearch(a, middle + 1, right, x);
+            return recursionBinarySearch(a, middle + 1, right, x);
         }
 
         if (x < a[middle]) {
-            return binarySearch(a, left, middle - 1, x);
+            return recursionBinarySearch(a, left, middle - 1, x);
         }
         return 0;
+    }
+
+    private static int binarySearch(int[] a, int left, int right, int x) {
+        while (left <= right) {
+            int middle = (right + left) / 2;
+
+            if (x > a[middle]) {
+                left = middle + 1;
+            } else if (x < a[middle]) {
+                right = middle - 1;
+            } else {
+                return middle;
+            }
+        }
+        return -1;
     }
 }

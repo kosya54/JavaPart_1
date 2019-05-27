@@ -1,4 +1,4 @@
-package Completed.CourseWork.Age;
+package Completed.CourseWork;
 
 import java.util.Scanner;
 
