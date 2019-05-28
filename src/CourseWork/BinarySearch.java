@@ -14,11 +14,8 @@ public class BinarySearch {
         System.out.println("Введите искомое число: ");
         int x = scanner.nextInt();
 
-        int left = 0;
-        int right = a.length - 1;
-
-        System.out.printf("Рекурсивный бинарный поиск.%nИндекс %d равен: %d.%n%n", x, recursionBinarySearch(a, left, right, x));
-        System.out.printf("Не рекурсивный бинарный поиск.%nИндекс %d равен: %d.", x, binarySearch(a, left, right, x));
+        System.out.printf("Рекурсивный бинарный поиск.%nИндекс %d равен: %d.%n%n", x, recursionBinarySearch(a, 0, a.length - 1, x));
+        System.out.printf("Не рекурсивный бинарный поиск.%nИндекс %d равен: %d.", x, binarySearch(a, x));
     }
 
     private static int recursionBinarySearch(int[] a, int left, int right, int x) {
@@ -30,18 +27,12 @@ public class BinarySearch {
         if (x == a[middle]) {
             return middle;
         }
-
-        if (x > a[middle]) {
-            return recursionBinarySearch(a, middle + 1, right, x);
-        }
-
-        if (x < a[middle]) {
-            return recursionBinarySearch(a, left, middle - 1, x);
-        }
-        return 0;
+        return (x > a[middle]) ? recursionBinarySearch(a, middle + 1, right, x) : recursionBinarySearch(a, left, middle - 1, x);
     }
 
-    private static int binarySearch(int[] a, int left, int right, int x) {
+    private static int binarySearch(int[] a, int x) {
+        int left = 0;
+        int right = a.length - 1;
         while (left <= right) {
             int middle = (right + left) / 2;
 
