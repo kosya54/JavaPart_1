@@ -16,17 +16,6 @@ class Power {
         System.out.printf("Возведение в степень с помощью рекурсии:%n%d в степени %d равно: %d.", number, power, getRecursionPower(number, power));
     }
 
-    private static int getRecursionPower(int number, int power) {
-        if (power == 0) {
-            return 1;
-        }
-
-        if (power != 1) {
-            return number * getRecursionPower(number, power - 1);
-        }
-        return number;
-    }
-
     private static int getPower(int number, int power) {
         if (power == 0) {
             return 1;
@@ -37,5 +26,16 @@ class Power {
             result *= number;
         }
         return result;
+    }
+
+    private static int getRecursionPower(int number, int power) {
+        if (power == 0) {
+            return 1;
+        }
+
+        if (power != 1) {
+            return number * getRecursionPower(number, power - 1);
+        }
+        return number;
     }
 }
