@@ -17,12 +17,8 @@ class Power {
     }
 
     private static int getPower(int number, int power) {
-        if (power == 0) {
-            return 1;
-        }
-
-        int result = number;
-        for (int i = 1; i < power; i++) {
+        int result = 1;
+        for (int i = 1; i <= power; i++) {
             result *= number;
         }
         return result;
@@ -34,7 +30,7 @@ class Power {
         }
 
         if (power != 1) {
-            return number * getRecursionPower(number, power - 1);
+            number *= getRecursionPower(number, power - 1);
         }
         return number;
     }

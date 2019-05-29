@@ -24,10 +24,13 @@ public class BinarySearch {
         }
         int middle = (right + left) / 2;
 
-        if (x == a[middle]) {
-            return middle;
+        if (x > a[middle]) {
+            return recursionBinarySearch(a, middle + 1, right, x);
         }
-        return (x > a[middle]) ? recursionBinarySearch(a, middle + 1, right, x) : recursionBinarySearch(a, left, middle - 1, x);
+        if (x < a[middle]) {
+            return recursionBinarySearch(a, left, middle - 1, x);
+        }
+        return middle;
     }
 
     private static int binarySearch(int[] a, int x) {
