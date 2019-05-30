@@ -18,20 +18,13 @@ class Power {
 
     private static int getPower(int number, int power) {
         int result = 1;
-        for (int i = 1; i <= power; i++) {
+        for (int i = 0; i < power; i++) {
             result *= number;
         }
         return result;
     }
 
     private static int getRecursionPower(int number, int power) {
-        if (power == 0) {
-            return 1;
-        }
-
-        if (power != 1) {
-            number *= getRecursionPower(number, power - 1);
-        }
-        return number;
+        return (power == 0) ? 1 : number * getRecursionPower(number, power - 1);
     }
 }

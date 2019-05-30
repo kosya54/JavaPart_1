@@ -13,9 +13,12 @@ public class BubbleSort {
 
     private static void bubbleSort(int[] array) {
         boolean isArraySorted = false;
+
+        int count = 1;
         while (!isArraySorted) {
             isArraySorted = true;
-            for (int i = 0; i < array.length - 1; i++) {
+
+            for (int i = 0; i < array.length - count; i++) {
                 if (array[i] > array[i + 1]) {
                     int temp = array[i];
                     array[i] = array[i + 1];
@@ -23,6 +26,7 @@ public class BubbleSort {
                     isArraySorted = false;
                 }
             }
+            ++count;
         }
     }
 }
