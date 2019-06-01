@@ -34,7 +34,7 @@ public class Deposit {
         double annualInterestRate;
         while (true) {
             System.out.println("Укажите годовую процентную ставку: ");
-            annualInterestRate = scanner.nextDouble();
+            annualInterestRate = scanner.nextDouble() / 100;
 
             double epsilon = 1.0e-10;
             if (annualInterestRate <= epsilon) {
@@ -45,13 +45,13 @@ public class Deposit {
         }
 
         System.out.println("Расчет с возведением в степень.");
-        double deposit = calculateProfit(depositAmount, monthsCount, annualInterestRate / 100);
-        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate, monthsCount, deposit);
+        double deposit = calculateProfit(depositAmount, monthsCount, annualInterestRate);
+        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate * 100, monthsCount, deposit);
         System.out.printf("Прибыль за данный период составляет: %.2f рублей.%n%n", deposit - depositAmount);
 
         System.out.println("Расчет с использованием цикла.");
-        deposit = calculateProfitCycle(depositAmount, monthsCount, annualInterestRate / 100);
-        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate, monthsCount, deposit);
+        deposit = calculateProfitCycle(depositAmount, monthsCount, annualInterestRate);
+        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate * 100, monthsCount, deposit);
         System.out.printf("Прибыль за данный период составляет: %.2f рублей.", deposit - depositAmount);
     }
 
@@ -62,8 +62,10 @@ public class Deposit {
 
     private static double calculateProfitCycle(double depositAmount, int monthsCount, double annualInterestRate) {
         final int monthsInYear = 12;
+        double coefficient = 1 + annualInterestRate / monthsInYear;
+
         for (int i = 0; i < monthsCount; i++) {
-            depositAmount = depositAmount * (1 + annualInterestRate / monthsInYear);
+            depositAmount *= coefficient;
         }
         return depositAmount;
     }

@@ -25,6 +25,9 @@ class Power {
     }
 
     private static int getRecursionPower(int number, int power) {
-        return (power == 0) ? 1 : number * getRecursionPower(number, power - 1);
+        if (power == 0) {
+            return 1;
+        }
+        return number * getRecursionPower(number, power - 1);
     }
 }
