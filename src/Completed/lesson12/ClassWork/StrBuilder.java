@@ -1,4 +1,4 @@
-package lesson12.ClassWork;
+package Completed.lesson12.ClassWork;
 
 public class StrBuilder {
     public static void main(String[] args) {

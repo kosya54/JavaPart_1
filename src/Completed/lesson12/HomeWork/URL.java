@@ -1,4 +1,4 @@
-package lesson12.HomeWork;
+package Completed.lesson12.HomeWork;
 
 public class URL {
     public static void main(String[] args) {
