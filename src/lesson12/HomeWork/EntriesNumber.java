@@ -6,28 +6,36 @@ import java.util.Scanner;
 
 public class EntriesNumber {
     public static void main(String[] args) throws FileNotFoundException {
-        String searchString = "Вася";
-
         try (Scanner scanner = new Scanner(new FileInputStream("input.txt"))) {
             if (scanner.hasNextLine()) {
-//                int count = 0;
+                StringBuilder stringBuilder = new StringBuilder();
+
                 while (scanner.hasNextLine()) {
-                    String string = scanner.nextLine();
-                    for (int i = 0; i < string.length(); i += searchString.length() + 1) {
-                        System.out.println(i + " " + string.indexOf(searchString, i));
-                    }
-                    System.out.println("------------------------------");
+                    stringBuilder.append(scanner.nextLine()).append(" ");
                 }
+                String string = stringBuilder.toString();
+
+                String searchString = "но Пруд уже Застыл; сосед мой Поспешает";
+                System.out.printf("Количество вхождений строки \"%s\" равно: %d", searchString, entriesNumber(string, searchString));
             } else {
                 System.out.println("Пустой файл.");
             }
         }
     }
 
-/*    private static int entriesNumber(String searchString, String lineFromFile) {
-        while (scanner.hasNextLine()) {
-            System.out.println(scanner.nextLine().indexOf(searchString, 0));
-            break;
+    private static int entriesNumber(String string, String searchString) {
+        string = string.toLowerCase();
+        searchString = searchString.toLowerCase();
+
+        int count = 0;
+        int index = 0;
+        while (index != -1) {
+            index = string.indexOf(searchString, index);
+            if (index != -1) {
+                ++index;
+                ++count;
+            }
         }
-    } */
+        return count;
+    }
 }
