@@ -6,13 +6,13 @@ public class Deposit {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double depositAmount;
+        double initialDepositAmount;
         while (true) {
             System.out.println("Укажите сумму вклада: ");
-            depositAmount = scanner.nextDouble();
+            initialDepositAmount = scanner.nextDouble();
 
             double epsilon = 1.0e-10;
-            if (depositAmount <= epsilon) {
+            if (initialDepositAmount <= epsilon) {
                 System.out.println("Сумма не может быть меньше или равна нулю.");
             } else {
                 break;
@@ -45,28 +45,29 @@ public class Deposit {
         }
 
         System.out.println("Расчет с возведением в степень.");
-        double deposit = calculateProfit(depositAmount, monthsCount, annualInterestRate);
-        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate * 100, monthsCount, deposit);
-        System.out.printf("Прибыль за данный период составляет: %.2f рублей.%n%n", deposit - depositAmount);
+        double finalDepositAmount = calculateProfit(initialDepositAmount, monthsCount, annualInterestRate);
+        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate * 100, monthsCount, finalDepositAmount);
+        System.out.printf("Прибыль за данный период составляет: %.2f рублей.%n%n", finalDepositAmount - initialDepositAmount);
 
         System.out.println("Расчет с использованием цикла.");
-        deposit = calculateProfitCycle(depositAmount, monthsCount, annualInterestRate);
-        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate * 100, monthsCount, deposit);
-        System.out.printf("Прибыль за данный период составляет: %.2f рублей.", deposit - depositAmount);
+        finalDepositAmount = calculateProfitCycle(initialDepositAmount, monthsCount, annualInterestRate);
+        System.out.printf("Сумма вклада по процентной ставке %.2f%% с учетом процентов за %d мес. составит: %.2f рублей.%n", annualInterestRate * 100, monthsCount, finalDepositAmount);
+        System.out.printf("Прибыль за данный период составляет: %.2f рублей.", finalDepositAmount - initialDepositAmount);
     }
 
-    private static double calculateProfit(double depositAmount, int monthsCount, double annualInterestRate) {
+    private static double calculateProfit(double initialDepositAmount, int monthsCount, double annualInterestRate) {
         final int monthsInYear = 12;
-        return depositAmount * Math.pow((1 + annualInterestRate / monthsInYear), monthsCount);
+        return initialDepositAmount * Math.pow((1 + annualInterestRate / monthsInYear), monthsCount);
     }
 
-    private static double calculateProfitCycle(double depositAmount, int monthsCount, double annualInterestRate) {
+    private static double calculateProfitCycle(double initialDepositAmount, int monthsCount, double annualInterestRate) {
         final int monthsInYear = 12;
+
         double coefficient = 1 + annualInterestRate / monthsInYear;
-
-        for (int i = 0; i < monthsCount; i++) {
-            depositAmount *= coefficient;
+        double coefficientPerDepositPeriod = 1;
+        for (int month = 1; month <= monthsCount; month++) {
+            coefficientPerDepositPeriod *= coefficient;
         }
-        return depositAmount;
+        return initialDepositAmount * coefficientPerDepositPeriod;
     }
 }
