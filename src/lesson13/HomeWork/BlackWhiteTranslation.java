@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class BlackWhiteTranslation {
     public static void main(String[] args) throws IOException {
-        BufferedImage image = ImageIO.read(new File("image.jpg"));
+        BufferedImage image = ImageIO.read(new File("image_1.jpg"));
         WritableRaster raster = image.getRaster();
 
         int width = raster.getWidth();
