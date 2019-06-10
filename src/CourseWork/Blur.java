@@ -14,74 +14,88 @@ public class Blur {
         int width = raster.getWidth();
         int height = raster.getHeight();
 
-        double[][] kernelArray = {{0.1111, 0.1111, 0.1111}, {0.1111, 0.1111, 0.1111}, {0.1111, 0.1111, 0.1111}};
+        //Матрица четкости
+        int[][] kernel = {{0, -1, 0}, {-1, 5, -1}, {0, -1, 0}};
+        //Матрица размытия
+//        int[][] kernel = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
+        int div = getDiv(kernel);
+        int offset = 0;
 
         final int COLORS_COUNT_IN_RGB = 3;
         int[] pixel = new int[COLORS_COUNT_IN_RGB];
-        int[] inputPixels = new int[kernelArray.length * kernelArray[0].length * COLORS_COUNT_IN_RGB];
+        int[] pixels = new int[kernel.length * kernel[0].length * COLORS_COUNT_IN_RGB];
+
+        final int RED_COMPONENT_INDEX = 0;
+        final int GREEN_COMPONENT_INDEX = 1;
+        final int BLUE_COMPONENT_INDEX = 2;
 
         for (int y = 0; y < height; y++) {
-            if (y >= height - kernelArray.length) {
+            if (y >= height - kernel.length) {
                 break;
             }
             for (int x = 0; x < width; x++) {
-                if (x >= width - kernelArray.length) {
+                if (x >= width - kernel[0].length) {
                     break;
                 }
-                int[] outputPixels = raster.getPixels(x, y, kernelArray.length, kernelArray.length, inputPixels).clone();
-
-                int[][] redPixels = getComponentMatrix(outputPixels, kernelArray.length, kernelArray[0].length, 0);
-                int red = getBlurredPixel(redPixels, kernelArray);
-
-                int[][] greenPixels = getComponentMatrix(outputPixels, kernelArray.length, kernelArray[0].length, 1);
-                int green = getBlurredPixel(greenPixels, kernelArray);
-
-                int[][] bluePixels = getComponentMatrix(outputPixels, kernelArray.length, kernelArray[0].length, 2);
-                int blue = getBlurredPixel(bluePixels, kernelArray);
+                int[] newPixels = raster.getPixels(x, y, kernel.length, kernel[0].length, pixels).clone();
+                int[][] redComponentMatrix = getComponentMatrix(newPixels, kernel.length, RED_COMPONENT_INDEX);
+                int[][] greenComponentMatrix = getComponentMatrix(newPixels, kernel.length, GREEN_COMPONENT_INDEX);
+                int[][] blueComponentMatrix = getComponentMatrix(newPixels, kernel.length, BLUE_COMPONENT_INDEX);
 
                 raster.getPixel(x + 1, y + 1, pixel);
-                pixel[0] = red;
-                pixel[1] = green;
-                pixel[2] = blue;
-                raster.setPixel(x + 1, y + 1, pixel);
+                pixel[0] = getModifiedComponent(redComponentMatrix, kernel, div, offset);
+                pixel[1] = getModifiedComponent(greenComponentMatrix, kernel, div, offset);
+                pixel[2] = getModifiedComponent(blueComponentMatrix, kernel, div, offset);
+                raster.setPixel(x, y, pixel);
             }
         }
         ImageIO.write(image, "png", new File("out.png"));
     }
 
-    private static int[][] getComponentMatrix(int[] array, int width, int height, int index) {
-        int[][] matrix = new int[height][width];
-        int count = index;
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                matrix[i][j] = array[count];
+    private static int getModifiedComponent(int[][] componentMatrix, int[][] kernel, int div, int offset) {
+        int sum = 0;
+        for (int i = 0; i < componentMatrix.length; i++) {
+            for (int j = 0; j < componentMatrix[0].length; j++) {
+                componentMatrix[i][j] *= kernel[i][j];
+                sum += componentMatrix[i][j];
+            }
+        }
+        return sat((sum / div) + offset);
+    }
+
+    private static int[][] getComponentMatrix(int[] pixels, int kernelLength, int componentIndex) {
+        int[][] componentMatrix = new int[kernelLength][kernelLength];
+
+        int count = componentIndex;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                componentMatrix[i][j] = pixels[count];
                 count += 3;
             }
         }
-        return matrix;
+        return componentMatrix;
     }
 
-    private static int getBlurredPixel(int[][] matrix, double[][] kernelArray) {
-        int sum = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                matrix[i][j] *= kernelArray[i][j];
-                sum += matrix[i][j];
-            }
-        }
-        return sat(sum);
-    }
-
-    private static int sat(int number) {
+    private static int sat(int component) {
         final int MIN = 0;
         final int MAX = 255;
 
-        if (number < MIN) {
+        if (component < MIN) {
             return MIN;
         }
-        if (number > MAX) {
+        if (component > MAX) {
             return MAX;
         }
-        return number;
+        return component;
+    }
+
+    private static int getDiv(int[][] kernel) {
+        int div = 0;
+        for (int[] value : kernel) {
+            for (int j = 0; j < kernel[0].length; j++) {
+                div += value[j];
+            }
+        }
+        return div;
     }
 }

@@ -4,69 +4,52 @@ import java.util.Arrays;
 
 public class QuickSort {
     public static void main(String[] args) {
-        int[] array1 = {10, 2, 3, 1, 6, 55, 9, 3, 1, 2, 77, 8, 100, 4};
-        int[] array2 = {10, 1};
-        int[] array3 = {10};
-        int[] array4 = {};
+        int[] array = {10, 2, 3, 1, 6, 55, 9, 3, 1, 2, 77, 8, 100, 4};
 
-        System.out.println(Arrays.toString(array1));
-        quickSort(array1, 0, array1.length - 1);
-        System.out.println(Arrays.toString(array1));
-        System.out.println();
-
-        System.out.println(Arrays.toString(array2));
-        quickSort(array2, 0, array2.length - 1);
-        System.out.println(Arrays.toString(array2));
-        System.out.println();
-
-        System.out.println(Arrays.toString(array3));
-        quickSort(array3, 0, array3.length - 1);
-        System.out.println(Arrays.toString(array3));
-        System.out.println();
-
-        System.out.println(Arrays.toString(array4));
-        quickSort(array4, 0, array4.length - 1);
-        System.out.println(Arrays.toString(array4));
+        System.out.println(Arrays.toString(array));
+        quickSort(array, 0, array.length - 1);
+        System.out.println(Arrays.toString(array));
     }
 
     private static void quickSort(int[] array, int left, int right) {
-        if (array.length <= 1) {
+        if (right == left) {
             return;
         }
-
-        if (array.length == 2) {
-            if (array[0] > array[1]) {
-                int temp = array[1];
-                array[1] = array[0];
-                array[0] = temp;
+        if (right - left == 1) {
+            if (array[left] > array[right]) {
+                int temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
             }
             return;
         }
 
         int i = left;
         int j = right;
-        int x = (array[left] + array[right]) / 2;
+        int x = array[(i + j) / 2];
 
-        while (i <= right) {
-            if (array[i] >= x) {
+        while (i <= j) {
+            while (array[i] <= x) {
+                if (array[i] == x) {
+                    break;
+                }
+                ++i;
+            }
+            while (array[j] >= x) {
+                if (array[j] == x) {
+                    break;
+                }
+                --j;
+            }
+            if (i <= j) {
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                ++i;
+                --j;
+            } else {
                 break;
             }
-            ++i;
-        }
-        while (j >= left) {
-            if (array[j] <= x) {
-                break;
-            }
-            --j;
-        }
-
-        if (i <= j) {
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-
-            ++i;
-            --j;
         }
 
         if (i < right) {

@@ -1,4 +1,4 @@
-package CourseWork;
+package Completed.CourseWork;
 
 import java.util.Arrays;
 

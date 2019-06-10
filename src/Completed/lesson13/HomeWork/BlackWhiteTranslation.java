@@ -1,4 +1,4 @@
-package lesson13.HomeWork;
+package Completed.lesson13.HomeWork;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class BlackWhiteTranslation {
     public static void main(String[] args) throws IOException {
-        BufferedImage image = ImageIO.read(new File("image_1.jpg"));
+        BufferedImage image = ImageIO.read(new File("image.jpg"));
         WritableRaster raster = image.getRaster();
 
         int width = raster.getWidth();
