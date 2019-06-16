@@ -38,11 +38,11 @@ public class Blur {
                 int[][] greenComponentMatrix = getComponentMatrix(pixels, kernel.length, GREEN_COMPONENT_INDEX);
                 int[][] blueComponentMatrix = getComponentMatrix(pixels, kernel.length, BLUE_COMPONENT_INDEX);
 
-                outputImageRaster.getPixel(x + 1, y + 1, pixel);
                 pixel[0] = getModifiedComponent(redComponentMatrix, kernel);
                 pixel[1] = getModifiedComponent(greenComponentMatrix, kernel);
                 pixel[2] = getModifiedComponent(blueComponentMatrix, kernel);
-                outputImageRaster.setPixel(x + 1, y + 1, pixel);
+
+                outputImageRaster.setPixel(kernel[0].length / 2 + x, kernel.length / 2 + y, pixel);
             }
         }
         ImageIO.write(outputImage, "png", new File("out.png"));
@@ -60,13 +60,14 @@ public class Blur {
     }
 
     private static int[][] getComponentMatrix(int[] pixels, int kernelLength, int componentIndex) {
+        final int COLORS_COUNT_IN_RGB = 3;
         int[][] componentMatrix = new int[kernelLength][kernelLength];
 
         int count = componentIndex;
         for (int i = 0; i < kernelLength; i++) {
             for (int j = 0; j < kernelLength; j++) {
                 componentMatrix[i][j] = pixels[count];
-                count += kernelLength;
+                count += COLORS_COUNT_IN_RGB;
             }
         }
         return componentMatrix;

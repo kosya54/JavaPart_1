@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class PyramidalSort {
     public static void main(String[] args) {
-        int[] array = {1, 5, 7, 2, 0, 5, 8, 3, 2, 4};
+        int[] array = {10, 2, 3, 77, 1000, 1, 3, 5, 99, 6, 8, 7, 1, 12};
 
         System.out.println(Arrays.toString(array));
         pyramidalSort(array);
@@ -12,25 +12,40 @@ public class PyramidalSort {
     }
 
     private static void pyramidalSort(int[] array) {
-        for (int i = array.length / 2 - 1; i >= 0; i--) {
+        int arrayLength = array.length - 1;
+        getHeap(array, arrayLength);
 
-            System.out.println(i);
+        while (arrayLength > 0) {
+            int temp = array[0];
+            array[0] = array[arrayLength];
+            array[arrayLength] = temp;
 
-            if ((2 * i + 1) < array.length - 1 && array[i] < array[2 * i + 1]) {
-                int temp = array[i];
-                array[i] = array[2 * i + 1];
-                array[2 * i + 1] = temp;
-            }
-
-            if ((2 * i + 2) < array.length - 1 && array[i] < array[2 * i + 2]) {
-                int temp = array[i];
-                array[i] = array[2 * i + 2];
-                array[2 * i + 2] = temp;
-            }
+            --arrayLength;
+            getHeap(array, arrayLength);
         }
+    }
 
-        int temp = array[0];
-        array[0] = array[array.length - 1];
-        array[array.length - 1] = temp;
+    private static void getHeap(int[] array, int arrayLength) {
+        int parent = arrayLength / 2 - 1;
+        while (parent >= 0) {
+            int child1 = 2 * parent + 1;
+            int child2 = 2 * parent + 2;
+
+            if (child1 <= arrayLength && array[parent] < array[child1]) {
+                int temp = array[parent];
+                array[parent] = array[child1];
+                array[child1] = temp;
+                parent = child1;
+                continue;
+            }
+            if (child2 <= arrayLength && array[parent] < array[child2]) {
+                int temp = array[parent];
+                array[parent] = array[child2];
+                array[child2] = temp;
+                parent = child2;
+                continue;
+            }
+            --parent;
+        }
     }
 }
