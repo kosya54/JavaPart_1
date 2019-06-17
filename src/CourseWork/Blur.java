@@ -23,7 +23,7 @@ public class Blur {
         double[][] kernel = {{1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0}, {1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0}, {1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0}};
 
         final int COLORS_COUNT_IN_RGB = 3;
-        int[] pixel = new int[COLORS_COUNT_IN_RGB];
+        double[] pixel = new double[COLORS_COUNT_IN_RGB];
         int[] pixels = new int[kernel.length * kernel[0].length * COLORS_COUNT_IN_RGB];
 
         final int RED_COMPONENT_INDEX = 0;
@@ -34,9 +34,9 @@ public class Blur {
             for (int x = 0; x <= width - kernel[0].length; x++) {
                 raster.getPixels(x, y, kernel.length, kernel[0].length, pixels);
 
-                int[][] redComponentMatrix = getComponentMatrix(pixels, kernel.length, RED_COMPONENT_INDEX);
-                int[][] greenComponentMatrix = getComponentMatrix(pixels, kernel.length, GREEN_COMPONENT_INDEX);
-                int[][] blueComponentMatrix = getComponentMatrix(pixels, kernel.length, BLUE_COMPONENT_INDEX);
+                double[][] redComponentMatrix = getComponentMatrix(pixels, kernel.length, RED_COMPONENT_INDEX);
+                double[][] greenComponentMatrix = getComponentMatrix(pixels, kernel.length, GREEN_COMPONENT_INDEX);
+                double[][] blueComponentMatrix = getComponentMatrix(pixels, kernel.length, BLUE_COMPONENT_INDEX);
 
                 pixel[0] = getModifiedComponent(redComponentMatrix, kernel);
                 pixel[1] = getModifiedComponent(greenComponentMatrix, kernel);
@@ -48,20 +48,19 @@ public class Blur {
         ImageIO.write(outputImage, "png", new File("out.png"));
     }
 
-    private static int getModifiedComponent(int[][] componentMatrix, double[][] kernel) {
-        int sum = 0;
+    private static double getModifiedComponent(double[][] componentMatrix, double[][] kernel) {
+        double sum = 0;
         for (int i = 0; i < componentMatrix.length; i++) {
             for (int j = 0; j < componentMatrix[0].length; j++) {
-                componentMatrix[i][j] *= kernel[i][j];
-                sum += componentMatrix[i][j];
+                sum += componentMatrix[i][j] * kernel[i][j];
             }
         }
         return sat(sum);
     }
 
-    private static int[][] getComponentMatrix(int[] pixels, int kernelLength, int componentIndex) {
+    private static double[][] getComponentMatrix(int[] pixels, int kernelLength, int componentIndex) {
         final int COLORS_COUNT_IN_RGB = 3;
-        int[][] componentMatrix = new int[kernelLength][kernelLength];
+        double[][] componentMatrix = new double[kernelLength][kernelLength];
 
         int count = componentIndex;
         for (int i = 0; i < kernelLength; i++) {
@@ -73,9 +72,9 @@ public class Blur {
         return componentMatrix;
     }
 
-    private static int sat(int component) {
-        final int MIN = 0;
-        final int MAX = 255;
+    private static double sat(double component) {
+        final double MIN = 0.0;
+        final double MAX = 255.0;
 
         if (component < MIN) {
             return MIN;
