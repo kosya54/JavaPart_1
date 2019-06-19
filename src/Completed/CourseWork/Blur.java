@@ -1,4 +1,4 @@
-package CourseWork;
+package Completed.CourseWork;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

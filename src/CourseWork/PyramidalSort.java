@@ -4,19 +4,32 @@ import java.util.Arrays;
 
 public class PyramidalSort {
     public static void main(String[] args) {
-        int[] array = {10, 2, 3, 6, 8, 7, 1, 12};
+        int[] array1 = {10, 2, 3, 6, 8, 7, 1, 12};
+        int[] array2 = {1, 3, 5, 7, 88, 100, 2, 1, 3333, 123};
+        int[] array3 = {};
 
-        System.out.println(Arrays.toString(array));
-        pyramidalSort(array);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array1));
+        pyramidalSort(array1);
+        System.out.println(Arrays.toString(array1));
+        System.out.println();
+
+        System.out.println(Arrays.toString(array2));
+        pyramidalSort(array2);
+        System.out.println(Arrays.toString(array2));
+        System.out.println();
+
+        System.out.println(Arrays.toString(array3));
+        pyramidalSort(array3);
+        System.out.println(Arrays.toString(array3));
     }
 
     private static void pyramidalSort(int[] array) {
         int arrayLength = array.length;
+
         for (int i = arrayLength / 2 - 1; i >= 0; i--) {
             buildHeap(array, i, arrayLength);
         }
-        
+        int count = 0;
         while (arrayLength > 0) {
             int temp = array[0];
             array[0] = array[arrayLength - 1];
@@ -24,37 +37,42 @@ public class PyramidalSort {
 
             --arrayLength;
             buildHeap(array, 0, arrayLength);
+            System.out.println(arrayLength);
+            ++count;
         }
+
+        System.out.println("Count: " + count);
     }
-  
+
     private static void buildHeap(int[] array, int i, int arrayLength) {
         while (true) {
             int j1 = 2 * i + 1;
             int j2 = 2 * i + 2;
-            
+
             if (j1 >= arrayLength && j2 >= arrayLength) {
-                break;
+                return;
+            }
+
+            int max;
+            if (j1 >= arrayLength) {
+                max = j2;
+            } else if (j2 >= arrayLength) {
+                max = j1;
             } else {
-                int maxJ;
-                if (j1 < arrayLength && j2 >= arrayLength) {
-                    maxJ = j1;
-                } else if (j2 < arrayLength && j1 >= arrayLength) {
-                    maxJ = j2;
+                if (array[j1] > array[j2]) {
+                    max = j1;
                 } else {
-                    if (array[j1] > array[j2]) {
-                        maxJ = j1;
-                    } else {
-                        maxJ = j2;
-                    }
+                    max = j2;
                 }
-                if (array[i] < array[maxJ]) {
-                    int temp = array[i];
-                    array[i] = array[maxJ];
-                    array[maxJ] = temp;
-                    i = maxJ;
-                } else {
-                    break;
-                }
+            }
+
+            if (array[i] < array[max]) {
+                int temp = array[i];
+                array[i] = array[max];
+                array[max] = temp;
+                i = max;
+            } else {
+                break;
             }
         }
     }

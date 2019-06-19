@@ -1,4 +1,4 @@
-package CourseWork;
+package Completed.CourseWork;
 
 public class Palindrome {
     public static void main(String[] args) {
