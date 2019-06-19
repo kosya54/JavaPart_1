@@ -26,7 +26,7 @@ public class Palindrome {
             while (j > i) {
                 if (!Character.isLetter(string.charAt(j))) {
                     --j;
-                } else if (Character.isLetter(string.charAt(i)) && Character.isLetter(string.charAt(j)) && string.charAt(i) == string.charAt(j)) {
+                } else if (string.charAt(i) == string.charAt(j)) {
                     --j;
                     break;
                 } else {
