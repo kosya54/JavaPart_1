@@ -24,39 +24,35 @@ public class PyramidalSort {
     }
 
     private static void pyramidalSort(int[] array) {
-        int arrayLength = array.length;
+        int arrayLength = array.length - 1;
 
-        for (int i = arrayLength / 2 - 1; i >= 0; i--) {
+        for (int i = array.length / 2 - 1; i >= 0; i--) {
             buildHeap(array, i, arrayLength);
         }
-        int count = 0;
+      
         while (arrayLength > 0) {
             int temp = array[0];
-            array[0] = array[arrayLength - 1];
-            array[arrayLength - 1] = temp;
+            array[0] = array[arrayLength];
+            array[arrayLength] = temp;
 
             --arrayLength;
             buildHeap(array, 0, arrayLength);
-            System.out.println(arrayLength);
-            ++count;
         }
-
-        System.out.println("Count: " + count);
     }
 
     private static void buildHeap(int[] array, int i, int arrayLength) {
         while (true) {
             int j1 = 2 * i + 1;
             int j2 = 2 * i + 2;
-
-            if (j1 >= arrayLength && j2 >= arrayLength) {
+            
+            if (j1 > arrayLength && j2 > arrayLength) {
                 return;
             }
 
             int max;
-            if (j1 >= arrayLength) {
+            if (j1 > arrayLength) {
                 max = j2;
-            } else if (j2 >= arrayLength) {
+            } else if (j2 > arrayLength) {
                 max = j1;
             } else {
                 if (array[j1] > array[j2]) {
@@ -65,7 +61,7 @@ public class PyramidalSort {
                     max = j2;
                 }
             }
-
+            
             if (array[i] < array[max]) {
                 int temp = array[i];
                 array[i] = array[max];
