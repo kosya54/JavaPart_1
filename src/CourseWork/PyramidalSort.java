@@ -29,7 +29,6 @@ public class PyramidalSort {
         for (int i = array.length / 2 - 1; i >= 0; i--) {
             buildHeap(array, i, arrayLength);
         }
-      
         while (arrayLength > 0) {
             int temp = array[0];
             array[0] = array[arrayLength];
@@ -44,7 +43,7 @@ public class PyramidalSort {
         while (true) {
             int j1 = 2 * i + 1;
             int j2 = 2 * i + 2;
-            
+
             if (j1 > arrayLength && j2 > arrayLength) {
                 return;
             }
@@ -61,7 +60,7 @@ public class PyramidalSort {
                     max = j2;
                 }
             }
-            
+
             if (array[i] < array[max]) {
                 int temp = array[i];
                 array[i] = array[max];
