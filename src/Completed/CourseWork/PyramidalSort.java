@@ -1,4 +1,4 @@
-package CourseWork;
+package Completed.CourseWork;
 
 import java.util.Arrays;
 
@@ -44,14 +44,12 @@ public class PyramidalSort {
             int j1 = 2 * i + 1;
             int j2 = 2 * i + 2;
 
-            if (j1 > arrayLength && j2 > arrayLength) {
+            if (j1 > arrayLength) {
                 return;
             }
 
             int max;
-            if (j1 > arrayLength) {
-                max = j2;
-            } else if (j2 > arrayLength) {
+            if (j2 > arrayLength) {
                 max = j1;
             } else {
                 if (array[j1] > array[j2]) {
